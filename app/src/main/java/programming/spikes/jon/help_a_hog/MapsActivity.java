@@ -3,6 +3,7 @@ package programming.spikes.jon.help_a_hog;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.pm.PackageManager;
+import android.content.res.AssetManager;
 import android.location.Location;
 
 import android.os.Looper;
@@ -26,6 +27,13 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
+
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
 import static com.google.android.gms.location.LocationServices.getFusedLocationProviderClient;
 
@@ -39,7 +47,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private long UPDATE_INTERVAL = 10 * 1000;  /* 10 secs */
     private long FASTEST_INTERVAL = 2000; /* 2 sec */
     SupportMapFragment mapFragment;
-
+    HashMap<String, LatLng> gpsFromFile;
     //suppressing permission checks since permission has to be granted in main activity
 
     @SuppressLint("MissingPermission")
@@ -50,9 +58,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-
+        readFromFile();
         //gets users location and updates it, zooms camera to location
         startLocationUpdates();
+
 
     }
 
@@ -63,6 +72,20 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         googleMap.setMyLocationEnabled(true);
+        LatLng union = new LatLng(36.068679, -94.175759);
+        //10=city 15=streets 20=buildings
+        CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(union, 15);
+        mMap.moveCamera(cameraUpdate);
+
+
+        Iterator it = gpsFromFile.entrySet().iterator();
+        while(it.hasNext()){
+            Map.Entry<String, LatLng> pair = (Map.Entry<String, LatLng>) it.next();
+            mMap.addMarker(new MarkerOptions().position(pair.getValue()).title(pair.getKey()));
+
+
+            it.remove();
+        }
 
     }
     // Trigger new location updates at interval
@@ -106,9 +129,38 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();*/
         //update user LatLng
         userLatLng = new LatLng(location.getLatitude(), location.getLongitude());
-        //10=city 15=streets 20=buildings
-        CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(userLatLng, 15);
-        mMap.moveCamera(cameraUpdate);
     }
+    void readFromFile(){
+        String data = null;
+        AssetManager am = this.getAssets();
+        gpsFromFile = new HashMap<>();
+        try{
+            InputStream is = am.open("GPS_Mid.txt");
+            int size = is.available();
+            byte[] buffer = new byte[size];
+            is.read(buffer);
+            is.close();
+            data = new String(buffer);
+        } catch(Exception e){
+            e.printStackTrace();
+        }
+        data = data.replaceAll("(\\r|\\t|)", "");
+        String[] split = data.split("\n");
+        ArrayList<String> items = new ArrayList<String>();
+        for(int i = 0; i < split.length; i++){
+            if(!split[i].isEmpty() && split[i].length() != 1)
+                items.add(split[i]);
+        }
+        for(int i = 0; i < items.size()-1; i+=2){
+            String lstring = items.get(i+1);
+            String[] two = lstring.split("\\s+");
+            LatLng location = new LatLng(Double.parseDouble(two[0]), Double.parseDouble(two[1]));
+            Log.i("loc:",location.toString());
+            gpsFromFile.put(items.get(i), location);
+        }
+
+    }
+
 }
+
 

@@ -4,10 +4,13 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.AssetManager;
 import android.location.Location;
+import android.os.AsyncTask;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -17,7 +20,12 @@ import android.widget.Toast;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.tasks.OnSuccessListener;
+
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 import static android.Manifest.permission.ACCESS_FINE_LOCATION;
 
@@ -28,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
     Button food;
     Button sports;
     Button weather;
+    HashMap<String, LatLng> gpsFromFile;
 
 
     @Override
@@ -91,4 +100,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+
 }

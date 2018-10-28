@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Help-A-Hog</string>
+    <string name="directions">Directions</string>
+    <string name="nearby">Nearby</string>
+    <string name="food">Food</string>
+    <string name="sports">Sports</string>
+    <string name="weather">Weather</string>
 </resources>

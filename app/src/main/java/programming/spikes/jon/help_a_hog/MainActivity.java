@@ -17,20 +17,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //used for main page popup, user clicks and popup starts
-        buildDropDown();
 
     }
 
-    void buildDropDown(){
-
-        //drop down menu for user to make selection of where to go
-        Spinner dropDown = findViewById(R.id.menuNav);
-
-        String[] options = {"What's Nearby?","Food","Directions","Help","Resources"};
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, options);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        dropDown.setAdapter(adapter);
-
-    }
 }

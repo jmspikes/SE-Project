@@ -5,19 +5,83 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
-    android:background="@drawable/hog"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:background="#383a37">
 
 
-    <Spinner
-        android:id="@+id/menuNav"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="52dp"
-        android:background="@android:drawable/btn_dropdown"
-        android:gravity="center_horizontal"
-        android:spinnerMode="dropdown"
+    <ImageView
+        android:id="@+id/graybackground"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerInside"
+        android:src="@drawable/hog"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/weather"
+        style="@style/button"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginStart="216dp"
+        android:layout_marginTop="388dp"
+        android:drawableTop="@drawable/weather"
+        android:text="@string/weather"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/sports"
+        style="@style/button"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="388dp"
+        android:drawableTop="@drawable/sports"
+        android:text="@string/sports"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/food"
+        style="@style/button"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginStart="116dp"
+        android:layout_marginTop="216dp"
+        android:drawableTop="@drawable/food"
+        android:text="@string/food"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/directions"
+        style="@style/button"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="40dp"
+        android:drawableTop="@drawable/map"
+        android:text="@string/directions"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/nearby"
+        style="@style/button"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginStart="216dp"
+        android:layout_marginTop="40dp"
+        android:drawableTop="@drawable/manwalking"
+        android:text="@string/nearby"
+        android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

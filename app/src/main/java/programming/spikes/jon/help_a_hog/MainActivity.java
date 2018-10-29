@@ -59,8 +59,8 @@ public class MainActivity extends AppCompatActivity {
 
             //on click need to go to the Maps activity
             public void onClick(View v) {
-                Intent mapActivity = new Intent(getApplicationContext(), MapsActivity.class);
-                startActivity(mapActivity);
+                Toast toast = Toast.makeText(getApplicationContext(), "Directions", Toast.LENGTH_SHORT);
+                toast.show();
             }
         });
         //nearby on click
@@ -68,8 +68,8 @@ public class MainActivity extends AppCompatActivity {
         nearby.setOnClickListener(new View.OnClickListener(){
 
             public void onClick(View v) {
-                Toast toast = Toast.makeText(getApplicationContext(), "Nearby", Toast.LENGTH_SHORT);
-                toast.show();
+                Intent mapActivity = new Intent(getApplicationContext(), MapsActivity.class);
+                startActivity(mapActivity);
             }
         });
         //food on click

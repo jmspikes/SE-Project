@@ -122,12 +122,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 
     public void onLocationChanged(Location location) {
-        /*
-        String msg = "Updated Location: " +
-                Double.toString(location.getLatitude()) + "," +
-                Double.toString(location.getLongitude());
-        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();*/
-        //update user LatLng
         userLatLng = new LatLng(location.getLatitude(), location.getLongitude());
     }
     void readFromFile(){

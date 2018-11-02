@@ -1,0 +1,184 @@
+Arkansas Union 
+	36.068679 -94.175759
+	
+
+Mullins Library
+	36.068699 -94.173847
+	
+
+Lefler Law Center
+	36.069699 -94.174809
+	
+
+Faulkner Performing Arts
+	36.069439 -94.176113
+	
+
+Silas H. Hunt Hall
+	36.069921 -94.175998
+	
+
+Administration Building
+	36.069974 -94.176949
+	
+
+Home Economics
+	36.069400 -94.173841
+	
+
+Rosen Pest Control
+	36.069820 -94.173883
+	
+
+Agriculture Building
+	36.069394 -94.172914
+	
+
+Agriculture Annex
+	36.069824 -94.172932
+	
+
+Plant Sciences Building
+	36.069890 -94.172590
+	
+
+Academic Support Building
+	36.069511 -94.171568
+	
+
+Memorial Hall
+	36.069875 -94.171386
+	
+
+Army ROTC
+	36.069917 -94.170776
+	
+
+Peabody Hall 
+	36.069579 -94.170751 
+	
+
+Graduate Education Building
+	36.069488 -94.170052
+	
+
+Fay Jones School of Architecture
+	36.068691 -94.172921
+	
+
+Old Main
+	36.068693 -94.171744
+	
+
+School of Art
+	36.067746 -94.174808
+	
+
+Music Department
+	36.067855 -94.174122
+	
+
+Chemistry and Biochemistry Research
+	36.067619 -94.173289
+	
+
+Discovery Hall
+	36.067565 -94.172728
+	
+
+Chemistry Building
+	36.068013 -94.172899
+	
+
+Gearhart Hall
+	36.067756 -94.171408
+	
+
+Ferritor Hall/Science Engineering
+	36.067095 -94.172317
+	
+
+Bell Engineering
+	36.067039 -94.171367
+	
+
+White Engineering Hall
+	36.066996 -94.170547
+	
+
+Kimpel 1
+	36.065998 -94.174314
+	 
+
+Kimpel 2
+	36.066175 -94.174306
+	 
+
+Kimpel 3
+	36.066350 -94.174298
+	
+
+Kimpel 4
+	36.065715 -94.174288
+	
+
+JBHT 1
+	36.065847 -94.173762
+	
+
+JBHT 2
+	36.066001 -94.173723
+	
+
+JBHT 3
+	36.066286 -94.173827
+	
+
+Willard J Walker Hall
+	36.065317 -94.173408
+	
+
+WCOB 1
+	36.065214 -94.174307
+	
+
+WCOB 2 
+	36.064830 -94.174326
+	
+
+WCOB 3 
+	36.064635 -94.174340
+	
+
+Reynolds Center
+	36.064623 -94.173650
+	
+
+Mechanical Engineering
+	36.066325 -94.172853
+	
+
+Physics Research
+	36.066262 -94.171874
+	
+
+Champions 1
+	36.066158 -94.171319
+	
+
+Champions 2 
+	36.065945 -94.171349
+	
+
+Champions 3
+	36.065746 -94.171349
+	
+
+Nanoscale 1 
+	36.066151 -94.169421
+	
+
+Nanoscale 2 
+	36.065844 -94.169381
+	
+

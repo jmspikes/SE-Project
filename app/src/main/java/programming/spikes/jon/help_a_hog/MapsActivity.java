@@ -40,17 +40,18 @@ import java.util.Map;
 import static com.google.android.gms.location.LocationServices.getFusedLocationProviderClient;
 
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
+public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, GoogleMap.OnMapLongClickListener {
 
     //declarations
     private GoogleMap mMap;
     LatLng userLatLng;
     private LocationRequest mLocationRequest;
-    private long UPDATE_INTERVAL = 10000;
-    private long FASTEST_INTERVAL = 2000;
+    private long UPDATE_INTERVAL = 1000;
+    private long FASTEST_INTERVAL = 1000;
     SupportMapFragment mapFragment;
     HashMap<String, LatLng> gpsFromFile;
     boolean focusedUser = false;
+    boolean debugging = false;
 
     //suppressing permission checks since permission has been granted in main activity
     @SuppressLint("MissingPermission")
@@ -74,6 +75,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
+        mMap.setOnMapLongClickListener(this);
         googleMap.setMyLocationEnabled(true);
         //used to set camera to union initially
         LatLng union = new LatLng(36.068679, -94.175759);
@@ -82,14 +84,27 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(union, 15);
         mMap.moveCamera(cameraUpdate);
 
+        /*
         //iteartes over all buildings and puts a marker on the map
         Iterator it = gpsFromFile.entrySet().iterator();
         while(it.hasNext()){
             Map.Entry<String, LatLng> pair = (Map.Entry<String, LatLng>) it.next();
             mMap.addMarker(new MarkerOptions().position(pair.getValue()).title(pair.getKey()));
         }
+        */
 
     }
+
+    //used to set location on long click, for debugging
+    @Override
+    public void onMapLongClick(LatLng point){
+        mMap.clear();
+        userLatLng = point;
+        mMap.addMarker(new MarkerOptions().position(userLatLng).icon(BitmapDescriptorFactory.defaultMarker( BitmapDescriptorFactory.HUE_BLUE)));
+
+        debugging = true;
+    }
+
     // Trigger new location updates at interval
     //https://github.com/codepath/android_guides/wiki/Retrieving-Location-with-LocationServices-API
     @SuppressLint("MissingPermission")
@@ -124,23 +139,39 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 
     public void onLocationChanged(Location location) {
+
         //updates users location
+        if(!debugging)
         userLatLng = new LatLng(location.getLatitude(), location.getLongitude());
         //will move camera to user exactly once, used to give scale of reference for user by moving camera to them
         if(focusedUser == false) {
             CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(userLatLng, 15);
             mMap.moveCamera(cameraUpdate);
             focusedUser = true;
-            MarkerOptions markerOptions = new MarkerOptions();
 
-            markerOptions.position(userLatLng).title("Test").snippet("This is a test").icon(BitmapDescriptorFactory.defaultMarker( BitmapDescriptorFactory.HUE_BLUE));
+            /*markerOptions.position(userLatLng).title("Test").snippet("This is a test").icon(BitmapDescriptorFactory.defaultMarker( BitmapDescriptorFactory.HUE_BLUE));
             CustomInfoWindow custom = new CustomInfoWindow(this);
             mMap.setInfoWindowAdapter(custom);
             Marker m = mMap.addMarker(markerOptions);
             m.setTag("tester");
-            m.showInfoWindow();
+            m.showInfoWindow();*/
 
         }
+
+        //iteartes over all buildings and puts a marker on the map
+        Iterator it = gpsFromFile.entrySet().iterator();
+        while(it.hasNext()){
+            Map.Entry<String, LatLng> pair = (Map.Entry<String, LatLng>) it.next();
+
+            double v = Math.abs(pair.getValue().latitude-userLatLng.latitude);
+            double y = Math.abs(pair.getValue().longitude-userLatLng.longitude);
+            if(Math.abs(pair.getValue().latitude-userLatLng.latitude) < 0.0009 &&
+               Math.abs(pair.getValue().longitude-userLatLng.longitude) < 0.0009)
+                mMap.addMarker(new MarkerOptions().position(pair.getValue()).title(pair.getKey()));
+            else
+                Log.i("not", "in");
+        }
+
 
     }
     void readFromFile(){

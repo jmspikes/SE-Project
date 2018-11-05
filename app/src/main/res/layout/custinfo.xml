@@ -4,64 +4,54 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="250dp"
     android:layout_height="250dp"
+    android:background="#383a37"
     tools:layout_editor_absoluteY="25dp">
+
+    <ImageView
+        android:id="@+id/graybackground"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:scaleType="centerInside"
+        android:src="@drawable/hog"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/buildingName"
+        app:layout_constraintStart_toStartOf="@+id/buildingName"
+        app:layout_constraintTop_toTopOf="parent" />
+
 
     <TextView
         android:id="@+id/buildingName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
         android:layout_marginTop="16dp"
+        android:textColor="#fff"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/buildingPic"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/buildingPic"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="11dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buildingName" />
-
-    <TextView
-        android:id="@+id/details"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="13dp"
-        android:singleLine="false"
-        app:layout_constraintBottom_toTopOf="@+id/fact1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/fact1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="#c2185b"
+        android:layout_width="213dp"
+        android:layout_height="129dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/fact2"
+        android:id="@+id/clickTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:textColor="#1976d2"
+        android:layout_marginBottom="11dp"
+        android:layout_marginEnd="17dp"
+        android:text="@string/moreInfo"
+        android:textColor="#fff"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fact1" />
-
-    <TextView
-        android:id="@+id/fact3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="18dp"
-        android:textColor="#64dd17"
-        app:layout_constraintEnd_toStartOf="@+id/fact2"
-        app:layout_constraintStart_toStartOf="@+id/fact2"
-        app:layout_constraintTop_toBottomOf="@+id/fact2" />
+        app:layout_constraintTop_toBottomOf="@+id/buildingPic" />
 
 </android.support.constraint.ConstraintLayout>

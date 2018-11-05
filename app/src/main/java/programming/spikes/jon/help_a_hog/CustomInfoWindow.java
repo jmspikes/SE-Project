@@ -29,23 +29,16 @@ public class CustomInfoWindow implements GoogleMap.InfoWindowAdapter {
         view.setLayoutParams(new ConstraintLayout.LayoutParams(500,500));
 
         TextView buildingName = view.findViewById(R.id.buildingName);
-        TextView details = view.findViewById(R.id.details);
         ImageView buildingPic = view.findViewById(R.id.buildingPic);
 
-        TextView fact1 = view.findViewById(R.id.fact1);
-        TextView fact2 = view.findViewById(R.id.fact2);
-        TextView fact3 = view.findViewById(R.id.fact3);
+
 
         buildingName.setText(marker.getTitle());
-        details.setText(marker.getSnippet());
 
         int imageId = context.getResources().getIdentifier("union",
                 "drawable", context.getPackageName());
         buildingPic.setImageResource(imageId);
 
-        fact1.setText("Fact1");
-        fact2.setText("Fact2");
-        fact3.setText("Fact3");
 
         return view;
     }

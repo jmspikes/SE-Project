@@ -106,50 +106,23 @@ White Engineering Hall
 	36.066996 -94.170547
 	
 
-Kimpel 1
-	36.065998 -94.174314
-	 
-
-Kimpel 2
+Kimpel 
 	36.066175 -94.174306
 	 
 
-Kimpel 3
-	36.066350 -94.174298
-	
-
-Kimpel 4
-	36.065715 -94.174288
-	
-
-JBHT 1
-	36.065847 -94.173762
-	
-
-JBHT 2
+JB Hunt 
 	36.066001 -94.173723
 	
-
-JBHT 3
-	36.066286 -94.173827
 	
 
 Willard J Walker Hall
 	36.065317 -94.173408
 	
 
-WCOB 1
-	36.065214 -94.174307
-	
-
-WCOB 2 
+Walton College of Business and Other Academic Things Too 
 	36.064830 -94.174326
 	
-
-WCOB 3 
-	36.064635 -94.174340
 	
-
 Reynolds Center
 	36.064623 -94.173650
 	
@@ -161,24 +134,11 @@ Mechanical Engineering
 Physics Research
 	36.066262 -94.171874
 	
-
-Champions 1
-	36.066158 -94.171319
-	
-
-Champions 2 
+Champions Hall 
 	36.065945 -94.171349
 	
 
-Champions 3
-	36.065746 -94.171349
-	
-
-Nanoscale 1 
-	36.066151 -94.169421
-	
-
-Nanoscale 2 
+Nanoscale 
 	36.065844 -94.169381
 	
 

@@ -1,8 +1,6 @@
 package programming.spikes.jon.help_a_hog;
 
-import android.Manifest;
 import android.annotation.SuppressLint;
-import android.content.pm.PackageManager;
 import android.content.res.AssetManager;
 import android.location.Location;
 
@@ -10,8 +8,6 @@ import android.os.Looper;
 
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -52,6 +48,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     HashMap<String, LatLng> gpsFromFile;
     boolean focusedUser = false;
     boolean debugging = false;
+    MarkerOptions markerListener = null;
+    CustomInfoWindow custom;
 
     //suppressing permission checks since permission has been granted in main activity
     @SuppressLint("MissingPermission")
@@ -65,7 +63,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         //reads GPS coordinates from file
         readFromFile();
         //gets users location and updates it, zooms camera to location
-        startLocationUpdates();
+        //startLocationUpdates();
+
 
     }
 
@@ -75,6 +74,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
+        //allows for clicking to see buildings at a new location
         mMap.setOnMapLongClickListener(this);
         googleMap.setMyLocationEnabled(true);
         //used to set camera to union initially
@@ -83,27 +83,54 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         //10=city 15=streets 20=buildings
         CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(union, 15);
         mMap.moveCamera(cameraUpdate);
-
-        /*
-        //iteartes over all buildings and puts a marker on the map
-        Iterator it = gpsFromFile.entrySet().iterator();
-        while(it.hasNext()){
-            Map.Entry<String, LatLng> pair = (Map.Entry<String, LatLng>) it.next();
-            mMap.addMarker(new MarkerOptions().position(pair.getValue()).title(pair.getKey()));
-        }
-        */
-
+        custom = new CustomInfoWindow(this);
+        mMap.setInfoWindowAdapter(custom);
+        //comment out startLocationUpdates in oncreate to enable
+        printAllMarkers();
     }
 
     //used to set location on long click, for debugging
     @Override
     public void onMapLongClick(LatLng point){
+        //resets map, needed to draw accurate markers
         mMap.clear();
+        mMap.setInfoWindowAdapter(custom);
+        //updates latlng to long press location
         userLatLng = point;
-        mMap.addMarker(new MarkerOptions().position(userLatLng).icon(BitmapDescriptorFactory.defaultMarker( BitmapDescriptorFactory.HUE_BLUE)));
-
+        //places visual marker there
+        MarkerOptions at = new MarkerOptions().position(userLatLng).icon(BitmapDescriptorFactory.defaultMarker( BitmapDescriptorFactory.HUE_BLUE)).title("User Location");
+        markerListener = at;
+        mMap.addMarker(at);
+        Toast resetMsg = Toast.makeText(getApplicationContext(),"Tab blue marker to turn location tracking back on.", Toast.LENGTH_SHORT);
+        resetMsg.show();
+        //turns off updating user position automatically
         debugging = true;
+
+        //listener to turn back on location checking
+        mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener(){
+
+            public boolean onMarkerClick(Marker marker){
+                    if(marker.getTitle().equals(markerListener.getTitle())){
+                        debugging = false;
+                        mMap.clear();
+                    }
+                    return true;
+                }
+            });
+
     }
+
+    //for debugging purposes, will print all markers for verification
+    void printAllMarkers(){
+
+        Iterator it = gpsFromFile.entrySet().iterator();
+        while(it.hasNext()){
+            Map.Entry<String, LatLng> pair = (Map.Entry<String, LatLng>) it.next();
+            mMap.addMarker(new MarkerOptions().position(pair.getValue()).title(pair.getKey()));
+        }
+    }
+
+
 
     // Trigger new location updates at interval
     //https://github.com/codepath/android_guides/wiki/Retrieving-Location-with-LocationServices-API
@@ -148,14 +175,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(userLatLng, 15);
             mMap.moveCamera(cameraUpdate);
             focusedUser = true;
-
-            /*markerOptions.position(userLatLng).title("Test").snippet("This is a test").icon(BitmapDescriptorFactory.defaultMarker( BitmapDescriptorFactory.HUE_BLUE));
-            CustomInfoWindow custom = new CustomInfoWindow(this);
-            mMap.setInfoWindowAdapter(custom);
-            Marker m = mMap.addMarker(markerOptions);
-            m.setTag("tester");
-            m.showInfoWindow();*/
-
         }
 
         //iteartes over all buildings and puts a marker on the map
@@ -163,13 +182,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         while(it.hasNext()){
             Map.Entry<String, LatLng> pair = (Map.Entry<String, LatLng>) it.next();
 
-            double v = Math.abs(pair.getValue().latitude-userLatLng.latitude);
-            double y = Math.abs(pair.getValue().longitude-userLatLng.longitude);
             if(Math.abs(pair.getValue().latitude-userLatLng.latitude) < 0.0009 &&
-               Math.abs(pair.getValue().longitude-userLatLng.longitude) < 0.0009)
+               Math.abs(pair.getValue().longitude-userLatLng.longitude) < 0.0009) {
                 mMap.addMarker(new MarkerOptions().position(pair.getValue()).title(pair.getKey()));
+
+            }
             else
-                Log.i("not", "in");
+                Log.i(pair.getKey(), "Not In Range");
         }
 
 

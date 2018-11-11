@@ -95,7 +95,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 startActivity(building);
             }});
 
-        printAllMarkers();
+        //printAllMarkers();
     }
 
 

@@ -6,4 +6,5 @@
     <string name="sports">Sports</string>
     <string name="weather">Weather</string>
     <string name="title_activity_maps">Help-A-Hog Map</string>
+    <string name="moreInfo">Click For More Information</string>
 </resources>

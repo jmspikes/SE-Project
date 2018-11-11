@@ -14,7 +14,7 @@ Faulkner Performing Arts
 	36.069439 -94.176113
 	
 
-Silas H Hunt Hall
+Silas H. Hunt Hall
 	36.069921 -94.175998
 	
 
@@ -22,7 +22,7 @@ Administration Building
 	36.069974 -94.176949
 	
 
-Human Environmental Science Building
+Home Economics
 	36.069400 -94.173841
 	
 
@@ -106,23 +106,50 @@ White Engineering Hall
 	36.066996 -94.170547
 	
 
-Kimpel 
+Kimpel 1
+	36.065998 -94.174314
+	 
+
+Kimpel 2
 	36.066175 -94.174306
 	 
 
-JB Hunt 
+Kimpel 3
+	36.066350 -94.174298
+	
+
+Kimpel 4
+	36.065715 -94.174288
+	
+
+JBHT 1
+	36.065847 -94.173762
+	
+
+JBHT 2
 	36.066001 -94.173723
 	
+
+JBHT 3
+	36.066286 -94.173827
 	
 
 Willard J Walker Hall
 	36.065317 -94.173408
 	
 
-Walton College of Business
+WCOB 1
+	36.065214 -94.174307
+	
+
+WCOB 2 
 	36.064830 -94.174326
 	
+
+WCOB 3 
+	36.064635 -94.174340
 	
+
 Reynolds Center
 	36.064623 -94.173650
 	
@@ -134,11 +161,24 @@ Mechanical Engineering
 Physics Research
 	36.066262 -94.171874
 	
-Champions Hall 
+
+Champions 1
+	36.066158 -94.171319
+	
+
+Champions 2 
 	36.065945 -94.171349
 	
 
-Nanoscale 
+Champions 3
+	36.065746 -94.171349
+	
+
+Nanoscale 1 
+	36.066151 -94.169421
+	
+
+Nanoscale 2 
 	36.065844 -94.169381
 	
 

@@ -63,8 +63,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         //reads GPS coordinates from file
         readFromFile();
         //gets users location and updates it, zooms camera to location
-        //startLocationUpdates();
-
+        startLocationUpdates();
 
     }
 
@@ -83,18 +82,23 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         //10=city 15=streets 20=buildings
         CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(union, 15);
         mMap.moveCamera(cameraUpdate);
-        custom = new CustomInfoWindow(this);
+        custom = new CustomInfoWindow(this, gpsFromFile);
         mMap.setInfoWindowAdapter(custom);
-        //comment out startLocationUpdates in oncreate to enable
-        printAllMarkers();
+        mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener( ) {
+            @Override
+            public void onInfoWindowClick(Marker marker) {
+                Toast.makeText( getApplicationContext(),"Info window clicked", Toast.LENGTH_SHORT).show();
+            }});
+
     }
+
 
     //used to set location on long click, for debugging
     @Override
     public void onMapLongClick(LatLng point){
+
         //resets map, needed to draw accurate markers
         mMap.clear();
-        mMap.setInfoWindowAdapter(custom);
         //updates latlng to long press location
         userLatLng = point;
         //places visual marker there
@@ -110,10 +114,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener(){
 
             public boolean onMarkerClick(Marker marker){
+                    //see's if the user has clicked on the blue marker, if they have clear map and turn back on location tracking
                     if(marker.getTitle().equals(markerListener.getTitle())){
                         debugging = false;
                         mMap.clear();
                     }
+                    else
+                    //shows the building info window
+                        marker.showInfoWindow();
                     return true;
                 }
             });
@@ -176,7 +184,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             mMap.moveCamera(cameraUpdate);
             focusedUser = true;
         }
-
         //iteartes over all buildings and puts a marker on the map
         Iterator it = gpsFromFile.entrySet().iterator();
         while(it.hasNext()){
@@ -185,10 +192,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             if(Math.abs(pair.getValue().latitude-userLatLng.latitude) < 0.0009 &&
                Math.abs(pair.getValue().longitude-userLatLng.longitude) < 0.0009) {
                 mMap.addMarker(new MarkerOptions().position(pair.getValue()).title(pair.getKey()));
-
             }
-            else
-                Log.i(pair.getKey(), "Not In Range");
         }
 
 
@@ -220,7 +224,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             String lstring = items.get(i+1);
             String[] two = lstring.split("\\s+");
             LatLng location = new LatLng(Double.parseDouble(two[0]), Double.parseDouble(two[1]));
-            Log.i("loc:",location.toString());
             gpsFromFile.put(items.get(i), location);
         }
 

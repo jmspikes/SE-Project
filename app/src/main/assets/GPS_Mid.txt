@@ -14,7 +14,7 @@ Faulkner Performing Arts
 	36.069439 -94.176113
 	
 
-Silas H. Hunt Hall
+Silas H Hunt Hall
 	36.069921 -94.175998
 	
 
@@ -22,7 +22,7 @@ Administration Building
 	36.069974 -94.176949
 	
 
-Home Economics
+Human Environmental Science Building
 	36.069400 -94.173841
 	
 
@@ -119,7 +119,7 @@ Willard J Walker Hall
 	36.065317 -94.173408
 	
 
-Walton College of Business and Other Academic Things Too 
+Walton College of Business
 	36.064830 -94.174326
 	
 	

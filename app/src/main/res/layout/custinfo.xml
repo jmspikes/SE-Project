@@ -28,6 +28,7 @@
         android:layout_marginBottom="8dp"
         android:layout_marginTop="16dp"
         android:gravity="center"
+        android:padding="10dp"
         android:textColor="#fff"
         android:textSize="14sp"
         app:layout_constraintBottom_toTopOf="@+id/buildingPic"
@@ -50,14 +51,18 @@
         android:id="@+id/clickTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_margin="10dp"
         android:layout_marginBottom="11dp"
         android:layout_marginEnd="17dp"
+        android:layout_marginStart="8dp"
         android:gravity="center"
+        android:padding="5dp"
         android:text="@string/moreInfo"
         android:textColor="#fff"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buildingPic" />
 
 </android.support.constraint.ConstraintLayout>

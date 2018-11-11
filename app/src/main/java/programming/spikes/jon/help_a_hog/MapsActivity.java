@@ -1,7 +1,10 @@
 package programming.spikes.jon.help_a_hog;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.content.res.AssetManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.location.Location;
 
 import android.os.Looper;
@@ -87,9 +90,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener( ) {
             @Override
             public void onInfoWindowClick(Marker marker) {
-                Toast.makeText( getApplicationContext(),"Info window clicked", Toast.LENGTH_SHORT).show();
+                Intent building = new Intent(getApplicationContext(), BuildingDisplay.class);
+                building.putExtra("title", marker.getTitle());
+                startActivity(building);
             }});
 
+        printAllMarkers();
     }
 
 
@@ -102,7 +108,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         //updates latlng to long press location
         userLatLng = point;
         //places visual marker there
-        MarkerOptions at = new MarkerOptions().position(userLatLng).icon(BitmapDescriptorFactory.defaultMarker( BitmapDescriptorFactory.HUE_BLUE)).title("User Location");
+        MarkerOptions at = new MarkerOptions().position(userLatLng).icon(BitmapDescriptorFactory.fromBitmap(resizeMapIcons("manwalking",100,100))).title("User Location");
         markerListener = at;
         mMap.addMarker(at);
         Toast resetMsg = Toast.makeText(getApplicationContext(),"Tab blue marker to turn location tracking back on.", Toast.LENGTH_SHORT);
@@ -172,6 +178,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 Looper.myLooper());
     }
 
+    //solution from https://stackoverflow.com/questions/14851641/change-marker-size-in-google-maps-api-v2
+    public Bitmap resizeMapIcons(String iconName,int width, int height){
+        Bitmap imageBitmap = BitmapFactory.decodeResource(getResources(),getResources().getIdentifier(iconName, "drawable", getPackageName()));
+        Bitmap resizedBitmap = Bitmap.createScaledBitmap(imageBitmap, width, height, false);
+        return resizedBitmap;
+    }
 
     public void onLocationChanged(Location location) {
 

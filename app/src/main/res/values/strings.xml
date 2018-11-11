@@ -7,4 +7,16 @@
     <string name="weather">Weather</string>
     <string name="title_activity_maps">Help-A-Hog Map</string>
     <string name="moreInfo">Click For More Information</string>
+    <string name="funName">Fun Fact:</string>
+    <string name="buildingFood">Food and Hours:</string>
+    <string name="testTextff">Opened in 1949, the building was named for Miss Jobelle Holcombe. Miss Jobelle was a graduate of the class of 1898 and remained at the University as a professor of English from 1901-1942. She also served as the first Dean of Women from 1907 to 1913.The building at the University of Illinois upon which Old Main was based had its towers flip-flopped, giving rise to a myth that Union supporters switched the towers here so that the taller bell tower would be on the north side, a symbol of their victory.One day, Bud Walton, co-founder of Wal-Mart, visited Broyles and asked him what Arkansas needed most to be competitive in the SEC. Broyles mentioned the need for additional basketball seats and was asked by Walton what a new arena would cost. The figure $30 million was discussed and Walton offered to pay half. From that visit, fabulous Bud Walton Arena was born.</string>
+    <string name="testTextf">"The Union food court:
+Monday-Friday: 8AM-8PM. Saturday: 10AM-2PM
+
+Food Served:
+Chick-Fil-A
+Pei Wei
+True Burger
+Rustic Italian
+Flying Burrito"</string>
 </resources>

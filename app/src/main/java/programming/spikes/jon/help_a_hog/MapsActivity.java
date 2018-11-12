@@ -50,6 +50,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     SupportMapFragment mapFragment;
     HashMap<String, LatLng> gpsFromFile;
     HashMap<String, String> factsFromFile;
+    HashMap<String, String> foodFromFile;
     boolean focusedUser = false;
     boolean debugging = false;
     MarkerOptions markerListener = null;
@@ -67,6 +68,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         //reads GPS coordinates from file
         readGPSFromFile();
         readFactsFromFile();
+        readFoodFromFile();
         //gets users location and updates it, zooms camera to location
         startLocationUpdates();
 
@@ -95,6 +97,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 Intent building = new Intent(getApplicationContext(), BuildingDisplay.class);
                 building.putExtra("title", marker.getTitle());
                 building.putExtra("facts", factsFromFile);
+                building.putExtra("food", foodFromFile);
                 startActivity(building);
             }});
 
@@ -263,7 +266,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         String lines[] = data.split("\\n");
 
         String building = "";
-        boolean nextBuilding = false;
         int i = 0;
         while(i < lines.length){
             String fact = "";
@@ -284,9 +286,47 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         factsFromFile.put(building, fact);
 
         }
-
     }
 
+    void readFoodFromFile() {
+
+        String data = null;
+        AssetManager am = this.getAssets();
+        foodFromFile = new HashMap<>();
+        try {
+            InputStream is = am.open("food.txt");
+            int size = is.available();
+            byte[] buffer = new byte[size];
+            is.read(buffer);
+            is.close();
+            data = new String(buffer);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        String lines[] = data.split("\\n");
+        String building = "";
+        int i = 0;
+        while (i < lines.length) {
+            String fact = "";
+            if (!lines[i].contains("\t")) {
+                building = lines[i];
+                i++;
+            }
+            //is a line with fact text
+            while (lines[i].contains("\t")) {
+                fact += lines[i];
+                i++;
+                if (i == lines.length)
+                    break;
+            }
+            building = building.replaceAll("(\r\t|\r|\t)", "");
+
+            //fact = fact.replaceAll("(\r\t|\r|\t)", "");
+            foodFromFile.put(building, fact);
+
+        }
+    }
 }
 
 

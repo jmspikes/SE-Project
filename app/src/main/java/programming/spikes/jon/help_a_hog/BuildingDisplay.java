@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -19,7 +20,9 @@ public class BuildingDisplay extends AppCompatActivity {
     TextView buildingName;
     TextView funBody;
     TextView foodBody;
+    TextView buildingFood;
     HashMap<String, String> fromFile;
+    HashMap<String, String> foodFromFile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +32,7 @@ public class BuildingDisplay extends AppCompatActivity {
         Intent get = getIntent();
         fromMaps =  get.getStringExtra("title");
         fromFile = (HashMap<String, String>) get.getSerializableExtra("facts");
+        foodFromFile = (HashMap<String, String>) get.getSerializableExtra("food");
         String pic = fromMaps.toLowerCase();
         pic = pic.replaceAll("\\s","");
         buildingPic = (ImageView) findViewById(R.id.buildingPic);
@@ -47,6 +51,13 @@ public class BuildingDisplay extends AppCompatActivity {
             funBody.setText("Check back shortly for new fun facts!");
         foodBody = (TextView) findViewById(R.id.foodBody);
         foodBody.setMovementMethod(new ScrollingMovementMethod());
+        if(foodFromFile.containsKey(fromMaps))
+            foodBody.setText(foodFromFile.get(fromMaps));
+        else{
+            foodBody.setVisibility(View.INVISIBLE);
+            buildingFood = (TextView) findViewById(R.id.buildingFood);
+            buildingFood.setVisibility(View.INVISIBLE);
+        }
 
     }
 }

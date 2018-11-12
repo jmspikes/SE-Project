@@ -49,6 +49,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private long FASTEST_INTERVAL = 1000;
     SupportMapFragment mapFragment;
     HashMap<String, LatLng> gpsFromFile;
+    HashMap<String, String> factsFromFile;
     boolean focusedUser = false;
     boolean debugging = false;
     MarkerOptions markerListener = null;
@@ -64,7 +65,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
         //reads GPS coordinates from file
-        readFromFile();
+        readGPSFromFile();
+        readFactsFromFile();
         //gets users location and updates it, zooms camera to location
         startLocationUpdates();
 
@@ -92,6 +94,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             public void onInfoWindowClick(Marker marker) {
                 Intent building = new Intent(getApplicationContext(), BuildingDisplay.class);
                 building.putExtra("title", marker.getTitle());
+                building.putExtra("facts", factsFromFile);
                 startActivity(building);
             }});
 
@@ -209,7 +212,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 
     }
-    void readFromFile(){
+    void readGPSFromFile(){
         String data = null;
         AssetManager am = this.getAssets();
         gpsFromFile = new HashMap<>();
@@ -237,6 +240,49 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             String[] two = lstring.split("\\s+");
             LatLng location = new LatLng(Double.parseDouble(two[0]), Double.parseDouble(two[1]));
             gpsFromFile.put(items.get(i), location);
+        }
+
+    }
+
+    void readFactsFromFile(){
+
+        String data = null;
+        AssetManager am = this.getAssets();
+        factsFromFile = new HashMap<>();
+        try{
+            InputStream is = am.open("facts.txt");
+            int size = is.available();
+            byte[] buffer = new byte[size];
+            is.read(buffer);
+            is.close();
+            data = new String(buffer);
+        } catch(Exception e){
+            e.printStackTrace();
+        }
+
+        String lines[] = data.split("\\n");
+
+        String building = "";
+        boolean nextBuilding = false;
+        int i = 0;
+        while(i < lines.length){
+            String fact = "";
+            if(!lines[i].contains("\t")) {
+                building = lines[i];
+                i++;
+            }
+            //is a line with fact text
+            while(lines[i].contains("\t")){
+                fact += lines[i];
+                i++;
+                if(i == lines.length)
+                    break;
+            }
+        building = building.replaceAll("(\r\t|\r|\t)", "");
+
+        fact = fact.replaceAll("(\r\t|\r|\t)","");
+        factsFromFile.put(building, fact);
+
         }
 
     }

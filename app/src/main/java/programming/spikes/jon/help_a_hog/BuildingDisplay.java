@@ -19,6 +19,7 @@ public class BuildingDisplay extends AppCompatActivity {
     TextView buildingName;
     TextView funBody;
     TextView foodBody;
+    HashMap<String, String> fromFile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +28,7 @@ public class BuildingDisplay extends AppCompatActivity {
         //handles passing hashmap between intents
         Intent get = getIntent();
         fromMaps =  get.getStringExtra("title");
+        fromFile = (HashMap<String, String>) get.getSerializableExtra("facts");
         String pic = fromMaps.toLowerCase();
         pic = pic.replaceAll("\\s","");
         buildingPic = (ImageView) findViewById(R.id.buildingPic);
@@ -39,6 +41,10 @@ public class BuildingDisplay extends AppCompatActivity {
         buildingName.setText(fromMaps);
         funBody = (TextView) findViewById(R.id.funBody);
         funBody.setMovementMethod(new ScrollingMovementMethod());
+        if(fromFile.containsKey(fromMaps))
+            funBody.setText(fromFile.get(fromMaps));
+        else
+            funBody.setText("Check back shortly for new fun facts!");
         foodBody = (TextView) findViewById(R.id.foodBody);
         foodBody.setMovementMethod(new ScrollingMovementMethod());
 

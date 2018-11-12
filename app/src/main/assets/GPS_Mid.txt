@@ -1,4 +1,4 @@
-Arkansas Union 
+Arkansas Union
 	36.068679 -94.175759
 	
 Lefler Law Center
@@ -44,7 +44,7 @@ Academic Support Building
 Memorial Hall
 	36.069875 -94.171386
 
-Peabody Hall 
+Peabody Hall
 	36.069579 -94.170751 
 	
 
@@ -75,7 +75,7 @@ Gearhart Hall
 	36.067756 -94.171408
 	
 
-Ferritor Hall/Science Engineering
+Ferritor Hall Science Engineering
 	36.067095 -94.172317
 	
 
@@ -87,11 +87,11 @@ White Engineering Hall
 	36.066996 -94.170547
 	
 
-Kimpel 
+Kimpel
 	36.066175 -94.174306
-	 
+	
 
-JB Hunt 
+JB Hunt
 	36.066001 -94.173723
 	
 	
@@ -115,7 +115,7 @@ Mechanical Engineering
 Physics Research
 	36.066262 -94.171874
 
-Nanoscale 
+Nanoscale
 	36.065844 -94.169381
 	
 
@@ -161,7 +161,7 @@ Buchanan-Droke Hall
 Bud Walton Arena	
 	36.061557 -94.178175
 
-Champions Hall	
+Champions Hall
 	36.065734 -94.171330
 
 Chemistry and Biochemistry Research Building	
@@ -190,3 +190,33 @@ Donald W Reynolds Razorback Stadium
 
 Duncan Avenue Apartments
 	36.064987 -94.170721
+
+Buchanan Droke Hall
+	36.064701 -94.176079
+
+Gibson Hall
+	36.066947 -94.175158
+
+Gladson Ripley Hall
+	36.065397 -94.176189
+
+Holcombe Hall
+	36.071064 -94.175219
+
+Hotz Hall
+	36.072894 -94.176960
+
+Kimple Hall
+	36.066160 -94.174311
+
+Northwest Quad
+	36.072290 -94.176044
+
+Pat Walker
+	36.070783 -94.175964
+
+Pomfret Dining Hall
+	36.062748 -94.176856
+
+Yocum Hall	
+	36.064962 -94.175112

@@ -16,8 +16,10 @@
         android:src="@drawable/hog"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/foodBody"
@@ -28,7 +30,7 @@
         android:background="@drawable/scrim"
         android:padding="5dp"
         android:scrollbars="vertical"
-        android:text="@string/testTextf"
+        android:text=""
         android:textAlignment="center"
         android:textColor="#fff"
         android:textSize="18sp"
@@ -87,21 +89,22 @@
 
     <TextView
         android:id="@+id/funBody"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="207dp"
         android:background="@drawable/scrim"
         android:gravity="center"
         android:padding="8dp"
         android:scrollbars="vertical"
-        android:text="@string/testTextff"
+        android:text=""
         android:textAlignment="center"
         android:textColor="#fff"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/buildingFood"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="8dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/funName"
@@ -116,5 +119,27 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/funBody"
         app:layout_constraintStart_toStartOf="@+id/buildingPic" />
+
+    <Button
+        android:id="@+id/directions"
+        style="@style/button"
+        android:layout_width="67dp"
+        android:layout_height="74dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginStart="16dp"
+        android:text="Take Me There"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/goBack"
+        style="@style/button"
+        android:layout_width="67dp"
+        android:layout_height="74dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="Go Back"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

@@ -5,8 +5,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
@@ -17,10 +19,15 @@ public class BuildingDisplay extends AppCompatActivity {
 
     String fromMaps;
     ImageView buildingPic;
+
     TextView buildingName;
     TextView funBody;
     TextView foodBody;
     TextView buildingFood;
+
+    Button direction;
+    Button goBack;
+
     HashMap<String, String> fromFile;
     HashMap<String, String> foodFromFile;
 
@@ -35,29 +42,47 @@ public class BuildingDisplay extends AppCompatActivity {
         foodFromFile = (HashMap<String, String>) get.getSerializableExtra("food");
         String pic = fromMaps.toLowerCase();
         pic = pic.replaceAll("\\s","");
-        buildingPic = (ImageView) findViewById(R.id.buildingPic);
+        buildingPic = findViewById(R.id.buildingPic);
         int imageId = this.getResources().getIdentifier(pic, "drawable", this.getPackageName());
         //sets a default image if no image is found
         if(imageId == 0)
             imageId = this.getResources().getIdentifier("defaultpic", "drawable", this.getPackageName());
         buildingPic.setImageResource(imageId);
-        buildingName = (TextView) findViewById(R.id.buildingName);
+        buildingName = findViewById(R.id.buildingName);
         buildingName.setText(fromMaps);
-        funBody = (TextView) findViewById(R.id.funBody);
+        funBody = findViewById(R.id.funBody);
         funBody.setMovementMethod(new ScrollingMovementMethod());
         if(fromFile.containsKey(fromMaps))
             funBody.setText(fromFile.get(fromMaps));
         else
             funBody.setText("Check back shortly for new fun facts!");
-        foodBody = (TextView) findViewById(R.id.foodBody);
+        foodBody = findViewById(R.id.foodBody);
         foodBody.setMovementMethod(new ScrollingMovementMethod());
         if(foodFromFile.containsKey(fromMaps))
             foodBody.setText(foodFromFile.get(fromMaps));
         else{
             foodBody.setVisibility(View.INVISIBLE);
-            buildingFood = (TextView) findViewById(R.id.buildingFood);
+            buildingFood = findViewById(R.id.buildingFood);
             buildingFood.setVisibility(View.INVISIBLE);
         }
+
+        direction = findViewById(R.id.directions);
+        goBack = findViewById(R.id.goBack);
+
+        goBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+        direction.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast placeholder = Toast.makeText(getApplicationContext(), "Make map!", Toast.LENGTH_SHORT);
+                placeholder.show();
+            }
+        });
 
     }
 }

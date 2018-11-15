@@ -7,6 +7,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.location.Location;
 
+import android.os.Handler;
 import android.os.Looper;
 
 import android.support.v4.app.FragmentActivity;
@@ -117,6 +118,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         MarkerOptions at = new MarkerOptions().position(userLatLng).icon(BitmapDescriptorFactory.fromBitmap(resizeMapIcons("manwalking",100,100))).title("User Location");
         markerListener = at;
         mMap.addMarker(at);
+        //moves camera to users location
+
         Toast resetMsg = Toast.makeText(getApplicationContext(),"Tab blue marker to turn location tracking back on.", Toast.LENGTH_SHORT);
         resetMsg.show();
         //turns off updating user position automatically
@@ -322,7 +325,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
             building = building.replaceAll("(\r\t|\r|\t)", "");
 
-            //fact = fact.replaceAll("(\r\t|\r|\t)", "");
             foodFromFile.put(building, fact);
 
         }

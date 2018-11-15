@@ -85,11 +85,6 @@ Bell Engineering
 
 White Engineering Hall
 	36.066996 -94.170547
-	
-
-Kimpel
-	36.066175 -94.174306
-	
 
 JB Hunt
 	36.066001 -94.173723
@@ -153,7 +148,7 @@ Bogle Park
 	36.059300 -94.176602
 
 Brough Commons	
-	36.066479 -94.175125
+	36.066315 -94.175203
 
 Buchanan-Droke Hall	
 	36.064736 -94.176128

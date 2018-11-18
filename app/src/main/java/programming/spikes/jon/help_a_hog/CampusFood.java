@@ -5,6 +5,9 @@ import android.content.Intent;
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.location.Location;
 import android.os.Looper;
 import android.support.v4.app.FragmentActivity;
@@ -21,9 +24,12 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.Polyline;
+import com.google.android.gms.maps.model.PolylineOptions;
 
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -56,6 +62,8 @@ public class CampusFood extends FragmentActivity implements OnMapReadyCallback {
         mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+        readFoodGPSFromFile();
+        readFactsFromFile();
         readFoodFromFile();
         startLocationUpdates();
     }
@@ -83,6 +91,17 @@ public class CampusFood extends FragmentActivity implements OnMapReadyCallback {
                 building.putExtra("food", foodFromFile);
                 startActivity(building);
             }});
+
+        //iteartes over all buildings and puts a marker on the map
+        Iterator it = foodGPS.entrySet().iterator();
+        while(it.hasNext()){
+            Map.Entry<String, LatLng> pair = (Map.Entry<String, LatLng>) it.next();
+
+            String pic = pair.getKey().toLowerCase();
+            pic = pic.replaceAll("\\s","");
+
+            mMap.addMarker(new MarkerOptions().position(pair.getValue()).title(pair.getKey()).icon(BitmapDescriptorFactory.fromBitmap(resizeMapIcons(pic,100,100))));
+        }
     }
 
     // Trigger new location updates at interval
@@ -135,19 +154,10 @@ public class CampusFood extends FragmentActivity implements OnMapReadyCallback {
             mMap.moveCamera(cameraUpdate);
             focusedUser = true;
         }
-        //iteartes over all buildings and puts a marker on the map
-        Iterator it = foodGPS.entrySet().iterator();
-        while(it.hasNext()){
-            Map.Entry<String, LatLng> pair = (Map.Entry<String, LatLng>) it.next();
-
-            mMap.addMarker(new MarkerOptions().position(pair.getValue()).title(pair.getKey()));
-
-        }
-
 
     }
 
-    void readFoodFromFile(){
+    void readFoodGPSFromFile(){
         String data = null;
         AssetManager am = this.getAssets();
         foodGPS = new HashMap<>();
@@ -185,7 +195,7 @@ public class CampusFood extends FragmentActivity implements OnMapReadyCallback {
         AssetManager am = this.getAssets();
         factsFromFile = new HashMap<>();
         try{
-            InputStream is = am.open("facts.txt");
+            InputStream is = am.open("foodFacts.txt");
             int size = is.available();
             byte[] buffer = new byte[size];
             is.read(buffer);
@@ -216,6 +226,45 @@ public class CampusFood extends FragmentActivity implements OnMapReadyCallback {
 
             fact = fact.replaceAll("(\r\t|\r|\t)","");
             factsFromFile.put(building, fact);
+
+        }
+    }
+
+    void readFoodFromFile() {
+
+        String data = null;
+        AssetManager am = this.getAssets();
+        foodFromFile = new HashMap<>();
+        try {
+            InputStream is = am.open("food.txt");
+            int size = is.available();
+            byte[] buffer = new byte[size];
+            is.read(buffer);
+            is.close();
+            data = new String(buffer);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        String lines[] = data.split("\\n");
+        String building = "";
+        int i = 0;
+        while (i < lines.length) {
+            String fact = "";
+            if (!lines[i].contains("\t")) {
+                building = lines[i];
+                i++;
+            }
+            //is a line with fact text
+            while (lines[i].contains("\t")) {
+                fact += lines[i];
+                i++;
+                if (i == lines.length)
+                    break;
+            }
+            building = building.replaceAll("(\r\t|\r|\t)", "");
+
+            foodFromFile.put(building, fact);
 
         }
     }

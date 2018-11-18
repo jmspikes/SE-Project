@@ -62,8 +62,8 @@ public class MainActivity extends AppCompatActivity {
         food.setOnClickListener(new View.OnClickListener(){
 
             public void onClick(View v) {
-                Toast toast = Toast.makeText(getApplicationContext(), "Food", Toast.LENGTH_SHORT);
-                toast.show();
+                Intent food = new Intent(getApplicationContext(), CampusFood.class);
+                startActivity(food);
             }
         });
 

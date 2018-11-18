@@ -42,7 +42,10 @@
         <activity
             android:name=".MapsActivity"
             android:label="@string/title_activity_maps" />
-        <activity android:name=".BuildingDisplay"></activity>
+        <activity android:name=".BuildingDisplay" />
+        <activity
+            android:name=".CampusFood"
+            android:label="@string/title_activity_caompus_food"></activity>
     </application>
 
 </manifest>

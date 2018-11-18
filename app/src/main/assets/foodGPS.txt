@@ -1,0 +1,34 @@
+Au Bon Pain - Coffee and Sandwiches
+	36.068516 -94.175317
+Club Red Union - Convenience Store
+	36.068884 -94.175325
+Chick Fil A - Chicken
+	36.068630 -94.176445
+Pei Wei - Chinese
+	36.068765 -94.176432
+Flying Burrito - Mexican
+	36.068761 -94.176284
+Rustic Italian - Pizza and Pasta
+	36.068702 -94.176277
+True Burger - Burgers
+	36.068631 -94.176280
+Starbucks - Coffee
+	36.066506 -94.175050
+Quiznos / Sushi With Gusto - Sandwiches / Sushi
+	36.066513 -94.175156
+Brough Dining Hall - Cafeteria
+	36.066516 -94.175317
+Slim Chickens - Chicken
+	36.066442 -94.174898
+Rocket Taco - Tacos
+	36.066342 -94.174893
+Where the Wild Greens AR - Salads
+	36.066250 -94.174908
+Einstein Bros Bagels - Coffee
+	36.065202 -94.173551
+Satelite Einstein Bros - To-Go Coffee
+	36.067147 -94.171634
+Satelite Au Bon Pain - To-Go Coffee and Sandwiches
+	36.066258 -94.171404
+Arsagas - Coffee
+	36.069395 -94.174534

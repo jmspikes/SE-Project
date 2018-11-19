@@ -323,15 +323,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
             //is a line with fact text
             while (lines[i].contains("\t")) {
-                fact += lines[i];
+                //add line separator to help display data in app
+                fact += lines[i]+System.lineSeparator();
                 i++;
                 if (i == lines.length)
                     break;
             }
             building = building.replaceAll("(\r\t|\r|\t)", "");
-
+            fact = fact.replaceAll("(\t)", "");
             foodFromFile.put(building, fact);
-
         }
     }
 }

@@ -102,7 +102,7 @@ public class CampusFood extends FragmentActivity implements OnMapReadyCallback {
             String pic = pair.getKey().toLowerCase();
             pic = pic.replaceAll("\\s","");
 
-            mMap.addMarker(new MarkerOptions().position(pair.getValue()).title(pair.getKey()).icon(BitmapDescriptorFactory.fromBitmap(resizeMapIcons(pic,100,100))));
+            mMap.addMarker(new MarkerOptions().position(pair.getValue()).title(pair.getKey()).icon(BitmapDescriptorFactory.fromBitmap(resizeMapIcons(pic,80,80))));
         }
     }
 
@@ -225,8 +225,8 @@ public class CampusFood extends FragmentActivity implements OnMapReadyCallback {
                     break;
             }
             building = building.replaceAll("(\r\t|\r|\t)", "");
-
             fact = fact.replaceAll("(\r\t|\r|\t)","");
+
             factsFromFile.put(building, fact);
 
         }
@@ -259,13 +259,14 @@ public class CampusFood extends FragmentActivity implements OnMapReadyCallback {
             }
             //is a line with fact text
             while (lines[i].contains("\t")) {
-                fact += lines[i];
+                //add line separator to help display data in app
+                fact += lines[i]+System.lineSeparator();
                 i++;
                 if (i == lines.length)
                     break;
             }
             building = building.replaceAll("(\r\t|\r|\t)", "");
-
+            fact = fact.replaceAll("(\t)", "");
             foodFromFile.put(building, fact);
 
         }

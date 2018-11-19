@@ -2,6 +2,8 @@ package programming.spikes.jon.help_a_hog;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.location.Address;
 import android.location.Geocoder;
@@ -22,6 +24,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.UiSettings;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolylineOptions;
@@ -50,7 +53,8 @@ public class DirectionsDisplay extends FragmentActivity implements OnMapReadyCal
     private long FASTEST_INTERVAL = 1000;
     boolean focusedUser = false;
     private static final int overview = 0;
-
+    String pic = null;
+    String item = null;
     @SuppressLint("MissingPermission")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +67,9 @@ public class DirectionsDisplay extends FragmentActivity implements OnMapReadyCal
         Intent get = getIntent();
         destination = get.getParcelableExtra("gps");
 
+        item = get.getStringExtra("title");
+        pic = item.toLowerCase();
+        pic = pic.replaceAll("\\s","");
 
         startLocationUpdates();
     }
@@ -163,7 +170,6 @@ public class DirectionsDisplay extends FragmentActivity implements OnMapReadyCal
         }
         if (results != null) {
             addPolyline(results, mMap);
-            positionCamera(results.routes[overview], mMap);
             addMarkersToMap(results, mMap);
         }
 
@@ -194,12 +200,21 @@ public class DirectionsDisplay extends FragmentActivity implements OnMapReadyCal
     }
 
     private void addMarkersToMap(DirectionsResult results, GoogleMap mMap) {
-        mMap.addMarker(new MarkerOptions().position(new LatLng(results.routes[overview].legs[overview].startLocation.lat,results.routes[overview].legs[overview].startLocation.lng)).title(results.routes[overview].legs[overview].startAddress));
-        mMap.addMarker(new MarkerOptions().position(new LatLng(results.routes[overview].legs[overview].endLocation.lat,results.routes[overview].legs[overview].endLocation.lng)).title(results.routes[overview].legs[overview].startAddress).snippet(getEndLocationTitle(results)));
+        mMap.addMarker(new MarkerOptions()
+                        .position(new LatLng(results.routes[overview].legs[overview].startLocation.lat,results.routes[overview].legs[overview].startLocation.lng))
+                        .title(results.routes[overview].legs[overview].startAddress));
+        mMap.addMarker(new MarkerOptions()
+                       .position(new LatLng(results.routes[overview].legs[overview].endLocation.lat,results.routes[overview].legs[overview].endLocation.lng))
+                       .title(item)
+                       .snippet(getEndLocationTitle(results))
+                       .icon(BitmapDescriptorFactory.fromBitmap(resizeMapIcons(pic,80,80))));
     }
 
-    private void positionCamera(DirectionsRoute route, GoogleMap mMap) {
-       // mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(route.legs[overview].startLocation.lat, route.legs[overview].startLocation.lng), 12));
+    //solution from https://stackoverflow.com/questions/14851641/change-marker-size-in-google-maps-api-v2
+    public Bitmap resizeMapIcons(String iconName, int width, int height){
+        Bitmap imageBitmap = BitmapFactory.decodeResource(getResources(),getResources().getIdentifier(iconName, "drawable", getPackageName()));
+        Bitmap resizedBitmap = Bitmap.createScaledBitmap(imageBitmap, width, height, false);
+        return resizedBitmap;
     }
 
     private void addPolyline(DirectionsResult results, GoogleMap mMap) {

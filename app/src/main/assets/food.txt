@@ -15,12 +15,11 @@ Bell Engineering
 	Coffee
 	Drinks
 Champions Hall
-	Au Bon Pain: 
-	Monday - Thursday 7:00AM - 7:00PM. Friday 7:00AM - 3:00PM
-	Food Served:
-	Coffee
-	Pastries
-	Sandwiches
+	Au Bon Pain:
+	Monday - Thursday
+	7:00AM - 7:00PM
+	Friday
+	7:00AM - 3:00PM
 Lefler Law Center
 	Arsegas coffee: 
 	7:00AM - 6:00PM
@@ -28,7 +27,12 @@ Lefler Law Center
 	Coffee
 	Pastries
 Pomfret Dining Hall
-	Dining Hall: 
-	Monday - Friday 6:30AM - 2:00PM & 4:30PM - 8:00PM
-	Saturday 8:00AM - 2:00PM & 4:30PM - 8:00PM
-	Sunday 10:30AM - 2:00PM & 4:30PM - 8:00PM
+	Monday - Friday 
+	6:30AM - 2:00PM
+	4:30PM - 8:00PM
+	Saturday
+	8:00AM - 2:00PM
+	4:30PM - 8:00PM
+	Sunday
+	10:30AM - 2:00PM
+	4:30PM - 8:00PM

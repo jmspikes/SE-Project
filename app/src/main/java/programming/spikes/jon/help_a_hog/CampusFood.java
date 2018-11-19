@@ -52,6 +52,7 @@ public class CampusFood extends FragmentActivity implements OnMapReadyCallback {
     HashMap<String, String> factsFromFile;
     HashMap<String, String> foodFromFile;
     CustomInfoWindow custom;
+    LatLng gpsCords;
 
     @SuppressLint("MissingPermission")
     @Override
@@ -89,6 +90,7 @@ public class CampusFood extends FragmentActivity implements OnMapReadyCallback {
                 building.putExtra("title", marker.getTitle());
                 building.putExtra("facts", factsFromFile);
                 building.putExtra("food", foodFromFile);
+                building.putExtra("gps", foodGPS.get(marker.getTitle()));
                 startActivity(building);
             }});
 

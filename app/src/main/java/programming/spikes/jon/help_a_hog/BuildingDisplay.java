@@ -32,6 +32,7 @@ public class BuildingDisplay extends AppCompatActivity {
 
     HashMap<String, String> fromFile;
     HashMap<String, String> foodFromFile;
+    LatLng gpsCords;
 
 
     @Override
@@ -43,6 +44,7 @@ public class BuildingDisplay extends AppCompatActivity {
         fromMaps =  get.getStringExtra("title");
         fromFile = (HashMap<String, String>) get.getSerializableExtra("facts");
         foodFromFile = (HashMap<String, String>) get.getSerializableExtra("food");
+        gpsCords = get.getParcelableExtra("gps");
         //used to parse picture name
         String pic = fromMaps.toLowerCase();
         pic = pic.replaceAll("\\s","");
@@ -95,8 +97,10 @@ public class BuildingDisplay extends AppCompatActivity {
         direction.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast placeholder = Toast.makeText(getApplicationContext(), "Make map!", Toast.LENGTH_SHORT);
-                placeholder.show();
+                Intent directions = new Intent(getApplicationContext(), DirectionsDisplay.class);
+                directions.putExtra("title" , fromMaps);
+                directions.putExtra("gps", gpsCords);
+                startActivity(directions);
             }
         });
 

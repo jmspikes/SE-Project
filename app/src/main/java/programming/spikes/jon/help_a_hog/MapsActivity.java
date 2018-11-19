@@ -99,6 +99,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 building.putExtra("title", marker.getTitle());
                 building.putExtra("facts", factsFromFile);
                 building.putExtra("food", foodFromFile);
+                building.putExtra("gps", gpsFromFile.get(marker.getTitle()));
                 startActivity(building);
             }});
 

@@ -10,4 +10,6 @@
     <string name="funName">Fun Fact:</string>
     <string name="buildingFood">Food and Hours:</string>
     <string name="title_activity_caompus_food">Map</string>
+    <string name="title_activity_directions_display">Map</string>
+    <string name="directionsApiKey">AIzaSyAZ94j-qfdRYGqALqdB2NpFkTAvukpZFS0</string>
 </resources>

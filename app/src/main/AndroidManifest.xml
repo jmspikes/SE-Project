@@ -45,7 +45,10 @@
         <activity android:name=".BuildingDisplay" />
         <activity
             android:name=".CampusFood"
-            android:label="@string/title_activity_caompus_food"></activity>
+            android:label="@string/title_activity_caompus_food" />
+        <activity
+            android:name=".DirectionsDisplay"
+            android:label="@string/title_activity_directions_display"></activity>
     </application>
 
 </manifest>

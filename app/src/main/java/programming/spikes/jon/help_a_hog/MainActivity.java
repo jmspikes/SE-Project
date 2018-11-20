@@ -95,8 +95,8 @@ public class MainActivity extends AppCompatActivity {
         weather.setOnClickListener(new View.OnClickListener(){
 
             public void onClick(View v) {
-                Toast toast = Toast.makeText(getApplicationContext(), "Weather", Toast.LENGTH_SHORT);
-                toast.show();
+                Intent weatherActivity = new Intent(getApplicationContext(), WeatherActivity.class);
+                startActivity(weatherActivity);
             }
         });
     }

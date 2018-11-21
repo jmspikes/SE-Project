@@ -55,6 +55,7 @@ public class DirectionsDisplay extends FragmentActivity implements OnMapReadyCal
     private static final int overview = 0;
     String pic = null;
     String item = null;
+    int counter = 0;
     @SuppressLint("MissingPermission")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,8 +69,14 @@ public class DirectionsDisplay extends FragmentActivity implements OnMapReadyCal
         destination = get.getParcelableExtra("gps");
 
         item = get.getStringExtra("title");
+
+
         pic = item.toLowerCase();
         pic = pic.replaceAll("\\s","");
+        int imageId = this.getResources().getIdentifier(pic, "drawable", this.getPackageName());
+        //sets a default image if no image is found
+        if(imageId == 0)
+            pic = "defaultpic";
 
         startLocationUpdates();
     }
@@ -169,8 +176,12 @@ public class DirectionsDisplay extends FragmentActivity implements OnMapReadyCal
             e.printStackTrace();
         }
         if (results != null) {
+            //will clear off markers every 5 seconds
+            if(counter % 5 == 0)
+                mMap.clear();
             addPolyline(results, mMap);
             addMarkersToMap(results, mMap);
+            counter++;
         }
 
 

@@ -214,8 +214,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         while(it.hasNext()){
             Map.Entry<String, LatLng> pair = (Map.Entry<String, LatLng>) it.next();
 
-            if(Math.abs(pair.getValue().latitude-userLatLng.latitude) < 0.0009 &&
-               Math.abs(pair.getValue().longitude-userLatLng.longitude) < 0.0009) {
+            if(Math.abs(pair.getValue().latitude-userLatLng.latitude) < 0.0013 &&
+               Math.abs(pair.getValue().longitude-userLatLng.longitude) < 0.0013) {
                 mMap.addMarker(new MarkerOptions().position(pair.getValue()).title(pair.getKey()));
             }
         }

@@ -1,0 +1,71 @@
+DATE		OPPONENT										LOCATION				TIME
+										
+Feb. 9		Nicholls										Hammond, La.			5 p.m.
+Feb. 9		Kennesaw State									Hammond, La.			3 p.m.
+Feb. 10		Nicholls										Hammond, La.			3 p.m.
+Feb. 10		at SE Louisiana									Hammond, La.			5 p.m.
+Feb. 17		Grand Canyon									Palm Springs, Calif.	5 p.m.
+Feb. 17		Utah											Palm Springs, Calif.	7:30 p.m.
+Feb. 18		Weber State										Palm Springs, Calif.	4:30 p.m.
+Feb. 18		Loyola Marymount								Palm Springs, Calif.	7 p.m.
+Feb. 19		Fordham											Palm Springs, Calif.	10:30 a.m.
+Feb. 23		Marist											Madeira Beach, Fla.		3 p.m.
+Feb. 23		Manhattan										Madeira Beach, Fla.		5:30 p.m.
+Feb. 24		Delaware										Madeira Beach, Fla.		10 a.m.
+Feb. 24		Villanova										Madeira Beach, Fla.		12:30 p.m.
+Feb. 25		McNeese											Madeira Beach, Fla.		8 a.m.
+Feb. 28		Missouri State									Fayetteville 			5 p.m.
+							
+March 2		Dartmouth										Fayetteville 			4 p.m.
+March 2		Northern Colorado								Fayetteville 			6:30 p.m.
+March 3		Dartmouth										Fayetteville 			4 p.m.
+March 3		Central Connecticut State						Fayetteville 			7:30 p.m.
+March 4		Northern Colorado								Fayetteville 			11:15 a.m.
+March 4		Central Connecticut State						Fayetteville 			1:30 p.m.
+March 6		Wichita State									Wichita, Kan.			3 p.m.
+March 6		Wichita State									Wichita, Kan.			5 p.m.
+March 10	Georgia*										Athens, Ga.				12 p.m.
+March 12	Georgia*										Athens, Ga.				1 p.m.
+March 12	Georgia*										Athens, Ga.				6 p.m.
+March 16	Iowa State										Fayetteville 			5 p.m.
+March 16	Saint Francis (Pa.)								Fayetteville 			7:30 p.m.
+March 17	Omaha											Fayetteville 			5 p.m.
+March 17	Saint Francis (Pa.)								Fayetteville 			7:30 p.m.
+March 18	Omaha											Fayetteville 			10:30 a.m.
+March 20	UT Arlington									Fayetteville 			12 p.m.
+March 20	UT Arlington									Fayetteville 			2 p.m.
+March 23	Missouri*										Fayetteville 			6 p.m.
+March 24	Missouri*										Fayetteville 			1 p.m.
+March 25 	Missouri*										Fayetteville 			1 p.m.
+March 30	Mississippi State*								Fayetteville 			6 p.m.
+March 31	Mississippi State*								Fayetteville 			1 p.m.
+				
+April 1		Mississippi State*								Fayetteville 			1 p.m.
+April 6		South Carolina*									Columbia, S.C.			5 p.m.
+April 8		South Carolina*									Columbia, S.C.			12 p.m.
+April 8		South Carolina*									Columbia, S.C.			2 p.m.
+April 10	Saint Louis 									St. Louis, Mo.			2 p.m.
+April 10 	Saint Louis 									St. Louis, Mo. 			4 p.m.
+April 13 	Alabama* 										Fayetteville 			7 p.m.
+April 14	Alabama*										Fayetteville 			11 a.m.
+April 15 	Alabama* 										Fayetteville 			1 p.m.
+April 20	Auburn*											Auburn, Ala.			6 p.m.
+April 21	Auburn*											Auburn, Ala.			3 p.m.
+April 21	Auburn*											Auburn, Ala.			5:30 p.m.
+April 28	Ole Miss*										Fayetteville 			3 p.m.
+April 29	Ole Miss*										Fayetteville 			4 p.m.
+April 30	Ole Miss*										Fayetteville 			6 p.m.
+				
+May 4		LSU*											Baton Rouge, La.		6:30 p.m.
+May 5		LSU*											Baton Rouge, La.		6 p.m.
+May 6		LSU*											Baton Rouge, La.		3 p.m.
+May 9		Kentucky										Columbia, Mo.			1:30 p.m.
+May 10		Georgia											Columbia, Mo.			1:30 p.m.
+May 11		South Carolina									Columbia, Mo.			2 p.m.
+May 18		DePaul - NCAA Fayetteville Regional				Fayetteville 			4 p.m.
+May 19		Wichita State - NCAA Fayetteville Regional		Fayetteville 			1:30 p.m.
+May 20		Wichita State - NCAA Fayetteville Regional		Fayetteville 			1:30 p.m.
+May 25		Oklahoma - NCAA Super Regional					Norman, Okla.			4 p.m.
+May 26 		Oklahoma - NCAA Super Regional					Norman, Okla.			12 p.m.
+
+* - Conference game

@@ -1,0 +1,43 @@
+DATE 				OPPONENT 						LOCATION 									TIME
+----------------------------------------------------------------------------------------------------
+Oct 29				Southwest Baptist				Bud Walton Arena							7 p.m.
+
+Nov 1				East Central University			Bud Walton Arena							7 p.m.
+Nov 9				Northwestern State				Bud Walton Arena							10:30 a.m.
+Nov 14				UT-Arlington					Arlington, Texas							7 p.m.
+Nov 18				Arizona State					Bud Walton Arena							7 p.m.
+Nov. 23				Tennessee State					Nashville, Tenn.							7:30 p.m.
+Nov. 24				Pittsburgh						Nashville, Tenn.							7:30 p.m.
+Nov. 25				Wisconsin						Nashville, Tenn.							7:30 p.m.
+Nov. 28				Oral Roberts					Bud Walton Arena							7 p.m.
+
+Dec. 2				Iowa State						Ames, Iowa									2 p.m.
+Dec. 4				Tennessee Tech					Bud Walton Arena							7 p.m.
+Dec. 8				Abilene Christian				Abilene, Texas								1 p.m.
+Dec. 16				Prairie View A&M 				Bud Walton Arena							2 p.m.
+Dec. 18				Nebraska						Bud Walton Arena							7 p.m.
+Dec. 20				Tulsa							Tulsa, Okla.								2 p.m.
+Dec. 30				Jackson State					Bud Walton Arena							2 p.m.
+
+Jan. 3				Mississippi State				Bud Walton Arena							6 p.m.
+Jan. 6				Ole Miss 						Oxford, Miss.								2 p.m.
+Jan. 10				Missouri						Columbia, Mo.								7 p.m.
+Jan. 13				VanderbilT						Bud Walton Arena							2 p.m.
+Jan. 21				Tennessee						Knoxville, Tenn.							6 p.m.
+Jan. 24				Alabama							Bud Walton Arena							7 p.m.
+Jan. 27				Florida							Gainesville, Fla.							1 p.m.
+Jan. 31				Georgia							Bud Walton Arena							7 p.m.
+
+Feb. 3				South Carolina					Bud Walton Arena							4 p.m.
+Feb. 7				LSU								Baton Rouge, La.							8 p.m.
+Feb. 10				Auburn							Bud Walton Arena							1 p.m.
+Feb. 17				Kentucky						Lexington, Ky.								1 p.m.
+Feb. 21				Georgia							Athens, Ga.									6 p.m.
+Feb. 24				Ole Miss 						Bud Walton Arena							3 p.m.
+Feb. 28				Missouri						Bud Walton Arena							8 p.m.
+
+March 3				Texas A&M 						College Station, Texas						4 p.m.
+March 6-10			SEC Tournament - TBA			Greenville, S.C.							TBA
+March 22-25			TBA								Campus Sites								TBA
+March 29-April 1	TBA								Albany, Chicago, Greensboro, Portland		TBA
+April 5 & 7			TBA								Tampa, Fla.									TBA

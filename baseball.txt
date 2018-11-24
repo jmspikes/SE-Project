@@ -1,0 +1,64 @@
+DATE			OPPONENT				SITE						time(CT)
+----------------------------------------------------------------------------
+February 15 	Eastern Illinois 		Baum Stadium 				TBA
+February 16 	Eastern Illinois 		Baum Stadium 				TBA
+February 17 	Eastern Illinois 		Baum Stadium 				TBA
+February 22 	Southern California 	Los Angeles, Calif. 		TBA
+February 23 	Southern California 	Los Angeles, Calif. 		TBA
+February 24 	Southern California 	Los Angeles, Calif. 		TBA
+February 27 	Memphis 				Baum Stadium 				TBA
+
+March 1 		Stony Brook 			Baum Stadium 				TBA
+March 2 		Stony Brook 			Baum Stadium 				TBA
+March 3 		Stony Brook 			Baum Stadium 				TBA
+March 5 		Charlotte 				Baum Stadium 				TBA
+March 6 		Charlotte 				Baum Stadium 				TBA
+March 8 		Louisiana Tech 			Baum Stadium 				TBA
+March 9 		Louisiana Tech 			Baum Stadium 				TBA
+March 10 		Louisiana Tech 			Baum Stadium 				TBA
+March 12 		Western Illinois 		Baum Stadium 				TBA
+March 13 		Western Illinois 		Baum Stadium 				TBA
+March 15 		Missouri* 				Baum Stadium 				TBA
+March 16 		Missouri* 				Baum Stadium 				TBA
+March 17 		Missouri* 				Baum Stadium 				TBA
+March 19 		Texas 					Austin, Texas 				TBA
+March 20 		Texas 					Austin, Texas 				TBA
+March 22 		Alabama* 				Tuscaloosa, Ala. 			TBA
+March 23 		Alabama* 				Tuscaloosa, Ala. 			TBA
+March 24 		Alabama* 				Tuscaloosa, Ala. 			TBA
+March 26 		Missouri State 			Springfield, Mo. 			TBA
+March 29 		Ole Miss* 				Baum Stadium 				TBA
+March 30 		Ole Miss* 				Baum Stadium 				TBA
+March 31 		Ole Miss* 				Baum Stadium 				TBA
+
+April 2 		Little Rock 			Baum Stadium 				TBA
+April 5 		Auburn* 				Auburn, Ala. 				TBA
+April 6 		Auburn* 				Auburn, Ala. 				TBA
+April 7 		Auburn* 				Auburn, Ala. 				TBA
+April 9 		Oral Roberts 			Baum Stadium 				TBA
+April 12 		Vanderbilt* 			Nashville, Tenn. 			TBA
+April 13 		Vanderbilt* 			Nashville, Tenn. 			TBA
+April 14 		Vanderbilt* 			Nashville, Tenn. 			TBA
+April 16 		Arkansas-Pine Bluff 	Baum Stadium 				TBA
+April 19 		Mississippi St.* 		Baum Stadium 				TBA
+April 20 		Mississippi St.* 		Baum Stadium 				TBA
+April 21 		Mississippi St.* 		Baum Stadium 				TBA
+April 23 		Northwestern St. 		Baum Stadium 				TBA
+April 24 		Northwestern St. 		Baum Stadium 				TBA
+April 26 		Tennessee* 				Baum Stadium 				TBA
+April 27 		Tennessee* 				Baum Stadium 				TBA
+April 28 		Tennessee* 				Baum Stadium 				TBA
+April 30 		Grambling St.@ 			North Little Rock, Ark. 	TBA
+
+May 3 			Kentucky* 				Lexington, Ky. 				TBA
+May 4 			Kentucky* 				Lexington, Ky. 				TBA
+May 5 			Kentucky* 				Lexington, Ky. 				TBA
+May 10 			LSU* 					Baum Stadium 				TBA
+May 11 			LSU* 					Baum Stadium 				TBA
+May 12 			LSU* 					Baum Stadium 				TBA
+May 16 			Texas A&M* 				College Station, Texas 		TBA
+May 17 			Texas A&M* 				College Station, Texas 		TBA
+May 18 			Texas A&M* 				College Station, Texas 		TBA
+
+@ - game played at Dickey-Stephens Park (North Little Rock, Ark.)
+*- denotes conference game

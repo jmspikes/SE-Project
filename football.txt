@@ -1,0 +1,16 @@
+DATE				OPPONENT				LOCATION				TIME
+-----------------------------------------------------------------------------
+Sat, Sept. 1		Eastern Illinois		Fayetteville, Ark.		3 p.m.
+Sat, Sept. 8		at Colorado State		Fort Collins, Colo.		6:30 p.m.
+Sat, Sept. 15		North Texas				Fayetteville, Ark.		3 p.m.
+Sat, Sept. 22		Auburn*					Auburn, Ala.			6:30 p.m.
+Sat, Sept. 29		Texas A&M*				Arlington, Texas		11 a.m.
+
+Sat, Oct. 6			Alabama*				Fayetteville, Ark.		11 a.m.
+Sat, Oct. 13		Ole Miss*				Little Rock, Ark.		6:30 p.m.
+Sat, Oct. 20		Tulsa					Fayetteville, Ark.		11 a.m.
+Sat, Oct. 27		Vanderbilt*				Fayetteville, Ark.		11 a.m.
+
+Sat, Nov. 10		LSU*					Fayetteville, Ark.		6:30 p.m.
+Sat, Nov. 17		Mississippi State*		Starkville, Miss.		11 a.m.
+Fri, Nov. 23		Missouri*				Columbia, Mo.			1:30 p.m.

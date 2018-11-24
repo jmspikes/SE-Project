@@ -1,0 +1,18 @@
+DATE		OPPONENT											LOCATION			TIME
+-------------------------------------------------------------------------------------------								
+Sept. 20	Milwaukee Classic									Milwaukee, Wisc.	All Day
+Sept. 21	Minnesota Invite									Minneapolis, Minn.	All Day
+Sept. 21	Milwaukee Classic									Milwaukee, Wisc.	All Day
+Sept. 22	Minnesota Invite									Minneapolis, Minn.	All Day
+Sept. 22	Milwaukee Classic									Milwaukee, Wisc.	All Day
+Sept. 23	Minnesota Invite									Minneapolis, Minn.	All Day
+Sept. 23	Milwaukee Classic									Milwaukee, Wisc.	All Day
+	
+Oct. 2		Riviera/ITA Women's All-American Championships		Malibu, Calif.		All Day
+Oct. 3		Riviera/ITA Women's All-American Championships		Malibu, Calif.		All Day
+Oct. 12		ITA Central Regional Championships					Iowa City, Iowa		All Day
+Oct. 13		ITA Central Regional Championships					Iowa City, Iowa		All Day
+Oct. 14		ITA Central Regional Championships					Iowa City, Iowa		All Day
+Oct. 26		Marliss Gruver Fall Invitational					Auburn, Ala.		All Day
+Oct. 27		Marliss Gruver Fall Invitational					Auburn, Ala.		All Day
+Oct. 28		Marliss Gruver Fall Invitational					Auburn, Ala.		All Day

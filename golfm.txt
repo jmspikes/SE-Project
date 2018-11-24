@@ -1,0 +1,39 @@
+DATE			OPPONENT									LOCATION
+--------------------------------------------------------------------------------------------------
+Aug. 31			Carmel Cup									Pebble Beach, Calif. (Pebble Beach GC)
+Sept. 1			Carmel Cup									Pebble Beach, Calif. (Pebble Beach GC)
+Sept. 2			Carmel Cup									Pebble Beach, Calif. (Pebble Beach GC)
+Sept. 9			The Gopher Invitational						Independence, Minn. (Windsong Farm GC)
+Sept. 10		The Gopher Invitational						Independence, Minn. (Windsong Farm GC)
+Sept. 24-25		Bearcat Invitational						Cincinnati, Ohio (Coldstream CC)
+Sept. 28		William H. Tucker Intercollegiate			Albuequerque, N.M. (UNM Championship South Course)
+Sept. 29		William H. Tucker Intercollegiate			Albuequerque, N.M. (UNM Championship South Course)
+	
+Oct. 8			Jerry Pate Invitational						Vestavia Hills, Ala. (Old Overton)
+Oct. 9			Jerry Pate Invitational						Vestavia Hills, Ala. (Old Overton)
+Oct. 22			Royal Oaks Intercollegiate					Carrollton, Texas (Maridoe Golf Club)
+Oct. 23			Royal Oaks Intercollegiate					Carrollton, Texas (Maridoe Golf Club)
+	
+Feb. 4			Sea Best Invitational						Ponte Vedra Beach, Fla. (TPC Sawgrass - Dye's Valley Course )
+Feb. 5			Sea Best Invitational						Ponte Vedra Beach, Fla. (TPC Sawgrass - Dye's Valley Course )
+Feb. 18			The Prestige								La Quinta, Calif. (PGA West)
+Feb. 19			The Prestige								La Quinta, Calif. (PGA West)
+Feb. 20			The Prestige								La Quinta, Calif. (PGA West)
+	
+March 3			Querencia Cabo Intercollegiate				Cabo San Lucas, Mexico (Querencia GC)
+March 4			Querencia Cabo Intercollegiate				Cabo San Lucas, Mexico (Querencia GC)
+March 5			Querencia Cabo Intercollegiate				Cabo San Lucas, Mexico (Querencia GC)
+March 17		Valspar Invitational						Palm City, Fla. (Floridian)
+March 18		Valspar Invitational						Palm City, Fla. (Floridian)
+March 19		Valspar Invitational						Palm City, Fla. (Floridian)
+	
+April 6			3M Augusta Invitational						Augusta, Ga. (Forest Hills GC)
+April 7			3M Augusta Invitational						Augusta, Ga. (Forest Hills GC)
+April 24		SEC Championship							St. Simons Island, Ga. (Sea Island GC)
+April 25		SEC Championship							St. Simons Island, Ga. (Sea Island GC)
+April 26		SEC Championship							St. Simons Island, Ga. (Sea Island GC)
+April 27		SEC Championship Match Play					St. Simons Island, Ga. (Sea Island GC)
+April 28		SEC Championship Match Play Championship	St. Simons Island, Ga. (Sea Island GC)	
+
+May 12-15		NCAA Regional Championship					TBA
+May 24-29		NCAA Championship							Fayetteville, Ark. (THE BLESSINGS GOLF COURSE)

@@ -1,0 +1,61 @@
+DATE 		OPPONENT 							LOCATION
+------------------------------------------------------------------			
+Jan. 11		Arkansas Invitational				Fayetteville, Ark.
+Jan. 25		Razorback Invitational				Fayetteville, Ark.
+Jan. 25		UW Invitational						Seattle, Wash.
+Jan. 26		Razorback Invitational				Fayetteville, Ark.
+Jan. 26		UW Invitational						Seattle, Wash.
+			
+Feb. 1		New Mexico Classic					Albuquerque, NM
+Feb. 2		New Mexico Classic					Albuquerque, NM
+Feb. 8		Tyson Invitational					Fayetteville, Ark.
+Feb. 9		Tyson Invitational					Fayetteville, Ark.
+Feb. 8		Husky Classic						Seattle, Wash.
+Feb. 9		Husky Classic						Seattle, Wash.
+Feb. 15		Arkansas Qualifier					Fayetteville, Ark.
+Feb. 15		JDL DMR Invitational				Winston Salem, NC
+Feb. 22		SEC Indoor Championships			Fayetteville, Ark.
+Feb. 23		SEC Indoor Championships			Fayetteville, Ark.
+		
+Mar. 8		NCAA Indoor Championships			Birmingham, Ala.
+Mar. 9		NCAA Indoor Championships			Birmingham, Ala.
+Mar. 22		Arkansas Spring Invitational		Fayetteville, Ark.
+Mar. 23		Arkansas Spring Invitational		Fayetteville, Ark.
+Mar. 27		Texas Relays						Austin, Texas
+Mar. 28		Texas Relays						Austin, Texas
+Mar. 29		Texas Relays						Austin, Texas
+Mar. 29		Stanford Invitational				Stanford, Calif.
+Mar. 30		Texas Relays						Austin, Texas
+Mar. 30		Stanford Invitational				Stanford, Calif.
+
+Apr. 12		John McDonnell Invitational			Fayetteville, Ark.
+Apr. 13		John McDonnell Invitational			Fayetteville, Ark.
+Apr. 18		Bryan Clay Invitational				Azusa, Calif.
+Apr. 18		Mt. SAC Invitational				Los Angeles, Calif.
+Apr. 19		Bryan Clay Invitational				Azusa, Calif.
+Apr. 19		Mt. SAC Invitational				Los Angeles, Calif.
+Apr. 19		Michael Johnson Invitational		Waco, Texas
+Apr. 20		Mt. SAC Invitational				Los Angeles, Calif.
+Apr. 20		Bryan Clay Invitational				Azusa, Calif.
+Apr. 20		Michael Johnson Invitational		Waco, Texas
+Apr. 26		National Relay Championships		Fayetteville, Ark.
+Apr. 27		National Relay Championships		Fayetteville, Ark.
+
+May 3		Arkansas Twilight					Fayetteville, Ark.
+May 9		SEC Outdoor Championships			Fayetteville, Ark.
+May 10		SEC Outdoor Championships			Fayetteville, Ark.
+May 11		SEC Outdoor Championships			Fayetteville, Ark.
+May 23		NCAA West Preliminary Round			Sacramento, Calif.
+May 24		NCAA West Preliminary Round			Sacramento, Calif.
+May 25		NCAA West Preliminary Round			Sacramento, Calif.
+
+June 5		NCAA Outdoor Championships			Austin, Texas
+June 6		NCAA Outdoor Championships			Austin, Texas
+June 7		NCAA Outdoor Championships			Austin, Texas
+June 8		NCAA Outdoor Championships			Austin, Texas
+TBD			USATF Junior Outdoor Championships	TBD
+
+July 25		USATF Outdoor Championships			Des Moines, Iowa
+July 26		USATF Outdoor Championships			Des Moines, Iowa
+July 27		USATF Outdoor Championships			Des Moines, Iowa
+July 28		USATF Outdoor Championships			Des Moines, Iowa

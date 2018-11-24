@@ -1,0 +1,30 @@
+DATE 		OPPONENT 										LOCATION 				TIME
+---------------------------------------------------------------------------------------------							
+Aug. 4		Kansas State (Exh.)								Razorback Field			6:30 p.m.
+Aug. 9		Nebraska (Exh.)									Lincoln, Neb.			7 p.m.
+Aug. 17		Duquesne										State College, Pa.		4 p.m.
+Aug. 19		West Virginia									State College, Pa.		11 a.m.
+Aug. 24		Nebraska-Omaha									Razorback Field			7 p.m.
+Aug. 26		McNeese State									Lake Charles, La.		4 p.m.
+Aug. 31		Baylor											Razorback Field			7 p.m.
+						
+Sept. 7		Florida Atlantic								Razorback Field			7 p.m.
+Sept. 9		UConn											Razorback Field			1 p.m.
+Sept. 13	Georgia*										Athens, Ga.				6 p.m.
+Sept. 16	Providence										Razorback Field			6 p.m.
+Sept. 20	Texas A&M*										Razorback Field			6 p.m.
+Sept. 23	Alabama*										Tuscaloosa, Ala.		6 p.m.
+Sept. 27	Missouri*										Razorback Field			6 p.m.
+						
+Oct. 4		LSU*											Razorback Field			6:30 p.m.
+Oct. 7		Ole Miss*										Oxford, Miss.			2 p.m.
+Oct. 11		Kentucky*										Razorback Field			6:30 p.m.
+Oct. 18		Mississippi State*								Starkville, Miss.		7 p.m.
+Oct. 21		Auburn*											Razorback Field			1 p.m.
+Oct. 25		Florida*										Gainesville, Fla.		5:30 p.m.
+Oct. 30		Ole Miss (SEC Tournament)						Orange Beach, Ala.		7:30 p.m.
+					
+Nov. 2		Florida (SEC Tournament)						Orange Beach, Ala.		Noon
+Nov. 4		LSU (SEC Tournament Final)						Orange Beach, Ala.		1 p.m.
+Nov. 9		Little Rock (NCAA Tournament First Round)		Razorback Field			7 p.m.
+Nov. 16		Virginia Tech (NCAA Tournament Second Round)	Cary, N.C.				1 p.m.

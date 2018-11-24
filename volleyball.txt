@@ -1,0 +1,37 @@
+DATE		OPPONENT				LOCATION					TIME
+----------------------------------------------------------------------				
+Aug. 11		Red-White (exh.)		FAYETTEVILLE				5 p.m.
+Aug. 18		at Oklahoma (exh.)		Norman, Okla.				3 p.m.
+Aug. 24		Kansas					Barnhill Arena				6 p.m.
+Aug. 26		at Kansas				Lawrence, Kan.				1 p.m.
+Aug. 31		vs Georgia Southern		Minneapolis, Minn.			4:30 p.m.
+		
+Sept. 1		vs North Dakota State	Minneapolis, Minn.			12 p.m.
+Sept. 1		at #3 Minnesota			Minneapolis, Minn.			7 p.m.
+Sept. 7		Butler					Barnhill Arena				7 p.m.
+Sept. 8		Buffalo					Barnhill Arena				12 p.m.
+Sept. 8		Northwestern			Barnhill Arena				7 p.m.
+Sept. 14	vs NC State				Atlanta, Ga.				3 p.m.
+Sept. 15	at Georgia Tech			Atlanta, Ga.				3 p.m.
+Sept. 19	at Texas A&M*			College Station, Texas		7 p.m.
+Sept. 23	Missouri*				Barnhill Arena				1 p.m.
+Sept. 28	at Kentucky*			Lexington, Ky.				6 p.m.
+Sept. 30	at Tennessee*			Knoxville, Tenn.			12:30 p.m.
+
+Oct. 5		Ole Miss*				Barnhill Arena				7 p.m.
+Oct. 7		at Missouri*			Columbia, Mo.				1:30 p.m.
+Oct. 12		Mississippi State*		Barnhill Arena				7 p.m.
+Oct. 17		South Carolina*			Barnhill Arena				7 p.m.
+Oct. 21		Alabama*				Barnhill Arena				1 p.m.
+Oct. 24		at Mississippi State*	Starkville, Miss.			7 p.m.
+Oct. 28		at Auburn*				Auburn, Ala.				1:30 p.m.
+
+Nov. 4		at Florida*				Gainesville, Fla.			3 p.m.
+Nov. 9		Georgia*				Barnhill Arena				7 p.m.
+Nov. 11		LSU*					Barnhill Arena				1 p.m.
+Nov. 14		Kentucky*				Barnhill Arena				5 p.m.
+Nov. 18		Tennessee*				Barnhill Arena				1 p.m.
+Nov. 21		at Georgia*				Athens, Ga.					5 p.m.
+Nov. 23		at Alabama*				Tuscaloosa, Ala.			7 p.m.
+
+* - Conference game

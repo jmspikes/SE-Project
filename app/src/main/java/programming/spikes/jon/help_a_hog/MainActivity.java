@@ -71,8 +71,8 @@ public class MainActivity extends AppCompatActivity {
         sports.setOnClickListener(new View.OnClickListener(){
 
             public void onClick(View v) {
-                Toast toast = Toast.makeText(getApplicationContext(), "Sports", Toast.LENGTH_SHORT);
-                toast.show();
+                Intent sports = new Intent(getApplicationContext(), activity_sport_main.class);
+                startActivity(sports);
             }
         });
 
@@ -80,8 +80,8 @@ public class MainActivity extends AppCompatActivity {
         weather.setOnClickListener(new View.OnClickListener(){
 
             public void onClick(View v) {
-                Toast toast = Toast.makeText(getApplicationContext(), "Weather", Toast.LENGTH_SHORT);
-                toast.show();
+                Intent weather = new Intent(getApplicationContext(), WeatherActivity.class);
+                startActivity(weather);
             }
         });
     }

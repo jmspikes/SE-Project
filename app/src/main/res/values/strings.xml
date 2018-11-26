@@ -9,7 +9,16 @@
     <string name="moreInfo">Click For More Information</string>
     <string name="funName">Fun Fact:</string>
     <string name="buildingFood">Hours of Operation:</string>
-    <string name="title_activity_caompus_food">Map</string>
+    <string name="title_activity_campus_food">Map</string>
     <string name="title_activity_directions_display">Map</string>
     <string name="directionsApiKey">AIzaSyAZ94j-qfdRYGqALqdB2NpFkTAvukpZFS0</string>
+    <string name="weatherTitle">Weather In Your Area</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="action_add_favourite">Add to Favorites</string>
+    <string name="action_play_next">Show Me More</string>
+    <string name="backdrop_title">Razorbacks Sports Center</string>
+    <string name="backdrop_subtitle">Check here for all things Razorback Athletics</string>
+    <string name="appbar_scrolling_view_behavior" translatable="false">android.support.design.widget.AppBarLayout$ScrollingViewBehavior</string>
+
 </resources>

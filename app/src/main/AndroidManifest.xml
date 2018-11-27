@@ -50,7 +50,8 @@
             android:name=".DirectionsDisplay"
             android:label="@string/title_activity_directions_display" />
         <activity android:name=".WeatherActivity" />
-        <activity android:name=".activity_sport_main"></activity>
+        <activity android:name=".activity_sport_main" />
+        <activity android:name=".HowToUse"></activity>
     </application>
 
 </manifest>

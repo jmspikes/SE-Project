@@ -1,9 +1,11 @@
 Administrative Services Building
 	Students initiated the change of the university's name from Arkansas Industrial University to the University of Arkansas in 1899. Students chose the school colors in 1895. Students picked the Razorback as their mascot in 1910.
+Agricultural Food and Life Sciences Building
+	Students initiated the change of the university's name from Arkansas Industrial University to the University of Arkansas in 1899. Students chose the school colors in 1895. Students picked the Razorback as their mascot in 1910.
 Arkansas Union
 	The Union is home to lots of activities at the university. There is even a movie theater that is free for students to go watch movies!
 Bell Engineering
-	This is the home to the engineering college. 
+	With graduate and undergraduate degrees in ten engineering fields, as well as distance learning and interdisciplinary programs, the College of Engineering can put you on a path to your engineering future.
 Buchanan Droke Hall
 	Buchanan House was named for Dr. John L. Buchanan, the first president of the University of Arkansas. He served as President from 1894 until his death in 1902.
 Bud Walton Arena
@@ -23,7 +25,7 @@ Gearhart Hall
 Gibson Hall
 	Gibson Hall began as Razorback Hall. It was later dedicated in the memory of James Gibson, a past director for University Housing.
 Gladson Ripley Hall
-	All girls dorm
+	Gladson-Ripley is a three-story co-ed residence hall with a study room and vending area on the ground floor. The student rooms each have a ceiling fan, a window unit air conditioner, ethernet connections for both students and a cable outlet. Room Dimensions are typically 12'-7" (W) x 13'-11" (L).
 Holcombe Hall
 	Opened in 1949, the building was named for Miss Jobelle Holcombe. Miss Jobelle was a graduate of the class of 1898 and remained at the University as a professor of English from 1901-1942. She also served as the first Dean of Women from 1907 to 1913.
 Humphreys Hall
@@ -47,12 +49,72 @@ Pomfret Dining Hall
 Yocum Hall
 	Named for Judge Henry S. Yocum of El Dorado, Yocum Hall opened in 1963. Judge Yocum served as a member of the Board of Trustees.
 Hotz Hall
-	Hotz Hall provides honors quarters for first-year Honors College students
+	Hotz Hall provides honors quarters for first-year Honors College students. Students living in Hotz Hall must have and maintain a 3.50 cumulative GPA. Bonded roommates who are not admitted to the Honors College must have a 3.50 cumulative GPA to qualify for Hotz Hall.
 White Engineering Hall
 	The Engineering Hall was named the John A. White Jr. Engineering Hall in 2012 in honor of Chancellor emeritus John White.
 Northwest Quad
-	Named for being the intersection of four different residence halls.
+	The Northwest Quad is a multi-use suite-style facility. The complex consists of four residence halls (Gatewood Hall at NW Quad, Harding Hall at NW Quad, NW Quad-B and NW Quad-C)and houses a computer lab, music room, faculty and staff apartments, classrooms, meeting rooms, lounges and a connected dining hall.
 Peabody Hall
 	Home of the teacher education department.
 Yocum Hall
 	Named for Judge Henry S. Yocum of El Dorado, Yocum Hall opened in 1963. Judge Yocum served as a member of the Board of Trustees.
+Faulkner Performing Arts
+	Nestled in the stunning Ozark Mountains on the beautiful University of Arkansas campus, the Jim & Joyce Faulkner Performing Arts Center is a 500+ seat state of the art venue dedicated to providing a community-centered approach to the performing arts. In addition to hosting acclaimed artists and performers, the Faulkner Center is also home to the University of Arkansas music department's large ensembles. With an impressive offering of renowned performers and culturally relevant events, the Faulkner Center excels in its mission of contributing to education and excellence, helping build a new generation of artists and patrons.
+Silas H Hunt Hall
+	The University of Arkansas Office of Financial Aid is located in 114 Silas Hunt Hall. Hunt Hall is on the corner of Maple and Garland across from the Pat Walker Health Center.
+Administration Building
+	Home to all things Administrative
+Human Environmental Science Building
+	We call it science, and it is, but there's more than a little art involved.
+	Our majors focus on the basics of life—family, community, food, clothing and environment. Understanding the basics is the science. Making them better for yourself and for others is the art.
+	Studying the human environment is a great way to spend your college career. Improving the human environment is a great way to make a living.
+Rosen Pest Control
+	The Rosen Alternative Pest Control Center was dedicated in 1996 to develop and implement effective, economical and environmentally responsible biological alternatives to chemical management of agricultural pest problems
+Agriculture Building
+	As an R1 research university, the AEAB department has immense resources at its disposal; however, we still maintain a close-knit and welcoming enviroment. So, we're able to offer a robust array of unique study-abroad opportunities, scholarships, and more, while still maintaining a small class size.
+Agriculture Annex
+	As an R1 research university, the AEAB department has immense resources at its disposal; however, we still maintain a close-knit and welcoming enviroment. So, we're able to offer a robust array of unique study-abroad opportunities, scholarships, and more, while still maintaining a small class size.
+Plant Sciences Building
+	The Department offers the only Plant Pathology graduate program in the state and is accredited through the Graduate School of the University of Arkansas by the North Central Association of Colleges and Secondary Schools. Students can enter the program in Plant Pathology from many areas of study but a background in biological sciences is very helpful. All students who have completed the requirements for a baccalaureate in an acceptable field will be given equal consideration regardless of race, sex, nationality or ethnic group.
+Academic Support Building
+	Realize your full potential at the university. Our academic support programs ensure academic success through tutoring and access to various academic resources.
+Graduate Education Building
+	Our Students Are Leading Change
+	The Graduate School at the University of Arkansas has a reputation for producing some of the most influential leaders and researchers of our time. Our students work with experts in their fields who are striving to answer today’s most challenging questions. They are at the forefront of discovery and are committed to enriching the global community.
+Fay Jones School of Architecture
+	The Fay Jones School of Architecture and Design at the University of Arkansas offers education in these fields: architecture, landscape architecture, interior design.
+School of Art
+	The Studio Art MFA program at the University of Arkansas provides an intensive studio environment for committed individuals planning careers as practicing artists. 
+Music Department
+	The University of Arkansas Department of Music is housed in the George and Boyce Billingsley Music Building in the heart of the University's beautiful campus in Fayetteville, Arkansas. The Department, accredited by the National Association of Schools of Music since 1951, has been a chartered member of Pi Kappa Lambda since 1984. Home to over 300 music majors and minors and more than 35 graduate students, the department has a faculty of 50 nationally and internationally recognized scholars, pedagogues, and musicians. Our program offers degrees at the bachelor and master levels and offers an intensive one-year performer's certificate. Through generous support from alumni and friends, the Department of Music became an All-Steinway School in 2010. The University of Arkansas is the third SEC school to gain this distinction and one of only 150 universities worldwide with the honor.
+ Discovery Hall
+ 	The names of great scientists grace the front of the art deco Discovery Hall (formerly the agriculture building). This building was originally the home of the science department on campus. When the science department grew too large for this building to accommodate it, the Bateman Physical Sciences Center was built.
+Ferritor Hall Science Engineering
+	Home to all things Science Engineering
+JB Hunt
+	This building houses interdisciplinary programs including several departments—business, spatial technology, science—and general-purpose classrooms.
+Willard J Walker Hall
+	The Willard J. Walker Hall at the University of Arkansas is named in honor of the late lead developer of Wal-Mart Stores in recognition of his foundation's donation to the project. The $22-million building, designed by Allison Architects and Machado Silvetti Associates, is one of four buildings comprising the Sam M. Walton College of Business at the Fayetteville campus.
+Reynolds Center
+	All academic departments are located in the Business Building along with the Dean's Office, Accounting Center, Technology Center and associate deans.
+Chemistry and Biochemistry Research Building
+	Chemistry and Biochemistry
+	Fulbright IT
+Physics Research
+	Our research faculty consists of more than twenty regular faculty, a few teaching faculty, and many research faculty and postdoctoral associates. Nearly all of our faculty mentor both graduate and undergraduate students.
+Nanoscale
+	The Nanotechnology minor is an interdisciplinary program that provides students with foundational knowledge and skills related to the emerging field of nanotechnology, including hands-on experience in several major areas of nanotechnology, such as synthesis of nanomaterials, nanoscale imaging, nanostructure assembly and manipulation, device and system integration, and performance evaluation. 
+Bogle Park
+	At the University of Arkansas, that commitment to improvement extends to facilities as well and there is no facility better for college softball than Bogle Park.
+Brough Commons
+	Home to Quiznos, Starbucks, Sushi With Gusto, Brough-a-Go-Go, Brough Dining Hall, and a picturesque view of Fayetteville
+Cralley Warren Laboratory
+	The Altheimer Laboratory, a unit of the Department of Crop, Soil, and Environmental Sciences and a part of the Division of Agriculture of the University of Arkansas, is recognized internationally as an outstanding facility for research on chemical and physiological improvements in crop production. Research functions concentrate on crop production and physiology, pesticide residues, weed science and soil testing, but also extend to such related areas as turfgrass, entomology, pathology, and horticulture.
+Don Tyson Center for Agricultural Sciences
+	Alongside Garland Avenue, on the highest point overlooking the Arkansas Agricultural Research and Extension Center, the Don Tyson Center for Agricultural Sciences promises to be the new standard for agricultural research and education in Arkansas.
+Duncan Avenue Apartments
+	Located on Duncan Avenue across from Harmon Parking Deck, Duncan Avenue Apartments are just minutes away from Engineering, Physics, Business, and Kimpel Hall classrooms.
+Holcombe Hall
+	Opened in 1949, the building was named for Miss Jobelle Holcombe. Miss Jobelle was a graduate of the class of 1898 and remained at the University as a professor of English from 1901-1942. She also served as the first Dean of Women from 1907 to 1913.
+Army ROTC Building
+	One hundred years from now, it won't matter the dollar amount in your bank account, or the size of your house, or the kind of car you drove. What will matter is the difference you made in the world. As a US Army Officer you will know you've made a difference. Let the experienced team of officers and non-commissioned officers of the University of Arkansas ROTC program lead you on that road to success. If you have questions contact us or click FAQ.

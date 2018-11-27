@@ -44,8 +44,8 @@ public class MainActivity extends AppCompatActivity {
 
             //on click need to go to the Maps activity
             public void onClick(View v) {
-                Toast toast = Toast.makeText(getApplicationContext(), "Directions", Toast.LENGTH_SHORT);
-                toast.show();
+                Intent direction = new Intent(getApplicationContext(), HowToUse.class);
+                startActivity(direction);
             }
         });
         //nearby on click

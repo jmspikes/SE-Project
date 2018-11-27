@@ -46,8 +46,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private GoogleMap mMap;
     LatLng userLatLng;
     private LocationRequest mLocationRequest;
-    private long UPDATE_INTERVAL = 1000;
-    private long FASTEST_INTERVAL = 1000;
+    private long UPDATE_INTERVAL = 4000;
+    private long FASTEST_INTERVAL = 4000;
     SupportMapFragment mapFragment;
     HashMap<String, LatLng> gpsFromFile;
     HashMap<String, String> factsFromFile;

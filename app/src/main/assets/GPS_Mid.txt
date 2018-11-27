@@ -185,10 +185,7 @@ Donald W Reynolds Razorback Stadium
 
 Duncan Avenue Apartments
 	36.064987 -94.170721
-
-Buchanan Droke Hall
-	36.064701 -94.176079
-
+	
 Gibson Hall
 	36.066947 -94.175158
 

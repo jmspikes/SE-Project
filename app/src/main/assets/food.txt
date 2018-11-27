@@ -1,0 +1,174 @@
+Arkansas Union
+	Union Food Court: 
+	Monday-Friday
+	8AM-8PM
+	Saturday
+	10AM-2PM
+	Food Served:
+	Chick-Fil-A
+	Pei Wei
+	True Burger
+	Rustic Italian
+	Flying Burrito
+Bell Engineering
+	Einsteins To Go: 
+	Monday - Thursday 
+	7:00AM - 5:30PM
+	Friday
+	7:00AM - 3:00PM
+	Food Served:
+	Bagels
+	Coffee
+	Drinks
+Champions Hall
+	Au Bon Pain:
+	Monday - Thursday
+	7:00AM - 7:00PM
+	Friday
+	7:00AM - 3:00PM
+Lefler Law Center
+	Arsegas coffee: 
+	7:00AM - 6:00PM
+	Food Served:
+	Coffee
+	Pastries
+Pomfret Dining Hall
+	Monday - Friday 
+	6:30AM - 2:00PM
+	4:30PM - 8:00PM
+	Saturday
+	8:00AM - 2:00PM
+	4:30PM - 8:00PM
+	Sunday
+	10:30AM - 2:00PM
+	4:30PM - 8:00PM
+Einstein Bros Bagels
+	Monday - Thursday
+	7:30am - 5:00pm
+	Friday
+	7:00am - 3:00pm
+Einstein Bros Bagels To Go
+	Monday - Thursday
+	7:30am - 5:00pm
+	Friday
+	7:00am - 3:00pm
+Melt Lab
+	Monday - Thursday
+	11:00am - 11:00pm
+	Friday
+	11:00am - 3:00pm
+	Sunday
+	6:00pm - 11:00pm
+Peabody Perks
+	Monday - Thursday
+	7:00am - 5:00pm
+	Friday
+	7:00am - 1:00pm
+Quiznos and Sushi With Gusto
+	Monday - Friday
+	10:30am - 9:00pm
+	Saturday - Sunday
+	10:30am - 9:00pm
+Rocket Taco
+	Monday - Friday
+	10:30am - 9:00pm
+	Satuday - Sunday
+	6:00pm - 9:00pm
+Slim Chickens
+	Monday - Thursday
+	10:30am - 10:00pm
+	Friday
+	10:30am - 9:00pm
+	Saturday
+	6:00pm - 9:00pm
+	Sunday
+	6:00pm - 10:00pm
+Starbucks
+	Monday - Thursday
+	7:00am - 11:00pm
+	Friday
+	7:00am - 10:00pm
+	Saturday 
+	1:00pm - 6:00pm
+	Sunday
+	1:00pm - 11:00pm
+Where the Wild Greens AR
+	Monday - Friday
+	10:30am - 9:00pm
+	Saturday - Sunday
+	6:00pm - 9:00pm
+Fulbright Dining Hall
+	Monday - Friday
+	6:30am - 8:00pm
+	Saturday - Sunday
+	10:30am - 2:00pm 
+	4:30pm - 8:00pm
+Brough Commons
+	Monday - Friday
+	6:30am - 8:00pm
+	Saturday - Sunday
+	10:30am - 2:00pm
+	4:30pm - 8:00pm
+Au Bon Pain
+	Monday - Thursday
+	7:00AM - 7:00PM
+	Friday
+	7:00AM - 3:00PM
+Au Bon Pain To Go
+	Monday - Thursday
+	7:00AM - 7:00PM
+	Friday
+	7:00AM - 3:00PM
+Club Red
+	Monday - Thursday
+	7:00am - 12:00am
+	Friday
+	7:00am - 10:00pm
+	Saturday
+	10:00am - 10:00pm
+	Sunday
+	1:00pm - 12:00am
+Club Red Brough
+	Monday - Thursday
+	7:00am - 12:00am
+	Friday
+	7:00am - 10:00pm
+	Saturday
+	10:00am - 10:00pm
+	Sunday
+	1:00pm - 12:00am
+Arsagas
+	Monday - Thursday
+	7:00AM–6:00PM
+	Friday	
+	7:00AM–5:00PM
+Subway
+	Monday-Friday
+	9:00AM - 10:00PM
+	Saturday - Sunday
+	10:00AM - 10:00PM
+Chick Fil A
+	Monday - Thursday
+	7:00AM - 11:00PM
+	Friday
+	7:00AM - 9:00PM
+Flying Burrito
+	Monday - Thursday
+	7:00AM - 11:00PM
+	Friday
+	7:00AM - 9:00PM
+Pei Wei
+	Monday - Thursday
+	7:00AM - 11:00PM
+	Friday
+	7:00AM - 9:00PM
+True Burger
+	Monday - Thursday
+	7:00AM - 11:00PM
+	Friday
+	7:00AM - 9:00PM
+Rustic Italian
+	Monday - Thursday
+	7:00AM - 11:00PM
+	Friday
+	7:00AM - 9:00PM

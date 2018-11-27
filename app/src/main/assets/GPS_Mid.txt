@@ -1,11 +1,6 @@
-Arkansas Union 
+Arkansas Union
 	36.068679 -94.175759
 	
-
-Mullins Library
-	36.068699 -94.173847
-	
-
 Lefler Law Center
 	36.069699 -94.174809
 	
@@ -48,13 +43,8 @@ Academic Support Building
 
 Memorial Hall
 	36.069875 -94.171386
-	
 
-Army ROTC
-	36.069917 -94.170776
-	
-
-Peabody Hall 
+Peabody Hall
 	36.069579 -94.170751 
 	
 
@@ -77,24 +67,15 @@ School of Art
 Music Department
 	36.067855 -94.174122
 	
-
-Chemistry and Biochemistry Research
-	36.067619 -94.173289
 	
-
 Discovery Hall
 	36.067565 -94.172728
-	
-
-Chemistry Building
-	36.068013 -94.172899
-	
 
 Gearhart Hall
 	36.067756 -94.171408
 	
 
-Ferritor Hall/Science Engineering
+Ferritor Hall Science Engineering
 	36.067095 -94.172317
 	
 
@@ -104,13 +85,8 @@ Bell Engineering
 
 White Engineering Hall
 	36.066996 -94.170547
-	
 
-Kimpel 
-	36.066175 -94.174306
-	 
-
-JB Hunt 
+JB Hunt
 	36.066001 -94.173723
 	
 	
@@ -133,12 +109,106 @@ Mechanical Engineering
 
 Physics Research
 	36.066262 -94.171874
-	
-Champions Hall 
-	36.065945 -94.171349
-	
 
-Nanoscale 
+Nanoscale
 	36.065844 -94.169381
 	
 
+Administrative Services Building	
+	36.061702 -94.181196
+
+Agricultural Food and Life Sciences Building	
+	36.070820 -94.176839
+
+Agriculture Annex	
+	36.069845 -94.172946
+
+Agriculture Building	
+	36.069378 -94.172911
+
+Army ROTC Building	
+	36.069931 -94.170795
+
+Arthur M Harding Hall	
+	36.071884 -94.176999
+
+Barnhill Arena Gymnastics Center	
+	36.066670 -94.177889
+
+Baseball and Track Training Center	
+	36.050641 -94.184451
+
+Baum Stadium at George Cole Field	
+	36.049962 -94.182345
+
+Biological and Agricultural Engineering Laboratory	
+	36.099207 -94.175618
+
+Bogle Park	
+	36.059300 -94.176602
+
+Brough Commons	
+	36.066315 -94.175203
+
+Buchanan-Droke Hall	
+	36.064736 -94.176128
+
+Bud Walton Arena	
+	36.061557 -94.178175
+
+Champions Hall
+	36.065734 -94.171330
+
+Chemistry and Biochemistry Research Building	
+	36.067575 -94.173303
+
+Chi Omega Greek Theater	
+	36.067102 -94.173766
+
+Cralley Warren Laboratory	
+	36.100528 -94.173240
+
+David W Mullins Library	
+	36.068700 -94.173834
+
+Davis Hall	
+	36.070582 -94.175207
+
+Discovery Hall
+	36.067544 -94.172737
+
+Don Tyson Center for Agricultural Sciences
+	36.099161 -94.178692
+
+Donald W Reynolds Razorback Stadium
+	36.068452 -94.178894
+
+Duncan Avenue Apartments
+	36.064987 -94.170721
+	
+Gibson Hall
+	36.066947 -94.175158
+
+Gladson Ripley Hall
+	36.065397 -94.176189
+
+Holcombe Hall
+	36.071064 -94.175219
+
+Hotz Hall
+	36.072894 -94.176960
+
+Kimple Hall
+	36.066160 -94.174311
+
+Northwest Quad
+	36.072290 -94.176044
+
+Pat Walker
+	36.070783 -94.175964
+
+Pomfret Dining Hall
+	36.062748 -94.176856
+
+Yocum Hall	
+	36.064962 -94.175112

@@ -1,0 +1,46 @@
+Au Bon Pain
+	36.068507 -94.175359
+Club Red
+	36.068837 -94.175366
+Club Red Brough
+	36.066180 -94.175344
+Chick Fil A
+	36.068494 -94.176509
+Pei Wei
+	36.068822 -94.176518
+Flying Burrito
+	36.068824 -94.176201
+Rustic Italian
+	36.068667 -94.176361
+True Burger
+	36.068505 -94.176177
+Starbucks
+	36.066438 -94.175054
+Quiznos and Sushi With Gusto
+	36.066344 -94.175177
+Brough Commons
+	36.066438 -94.175341
+Slim Chickens
+	36.066416 -94.174827
+Rocket Taco
+	36.066144 -94.174824
+Where the Wild Greens AR
+	36.065942 -94.174845
+Einstein Bros Bagels
+	36.065202 -94.173551
+Einstein Bros Bagels To Go
+	36.067147 -94.171634
+Au Bon Pain To Go
+	36.066258 -94.171404
+Arsagas
+	36.069340 -94.174552
+Melt Lab
+	36.073271 -94.178414
+Peabody Perks
+	36.069582 -94.170769
+Subway
+	36.072705 -94.175166
+Fulbright Dining Hall
+	36.072134 -94.176140
+Pomfret Dining Hall
+	36.062741 -94.176891

@@ -1,9 +1,13 @@
 package programming.spikes.jon.help_a_hog;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.content.res.AssetManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.location.Location;
 
+import android.os.Handler;
 import android.os.Looper;
 
 import android.support.v4.app.FragmentActivity;
@@ -42,12 +46,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private GoogleMap mMap;
     LatLng userLatLng;
     private LocationRequest mLocationRequest;
-    private long UPDATE_INTERVAL = 1000;
-    private long FASTEST_INTERVAL = 1000;
+    private long UPDATE_INTERVAL = 4000;
+    private long FASTEST_INTERVAL = 4000;
     SupportMapFragment mapFragment;
     HashMap<String, LatLng> gpsFromFile;
+    HashMap<String, String> factsFromFile;
+    HashMap<String, String> foodFromFile;
     boolean focusedUser = false;
-    boolean debugging = false;
+    boolean userControlled = false;
     MarkerOptions markerListener = null;
     CustomInfoWindow custom;
 
@@ -61,7 +67,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
         //reads GPS coordinates from file
-        readFromFile();
+        readGPSFromFile();
+        readFactsFromFile();
+        readFoodFromFile();
         //gets users location and updates it, zooms camera to location
         startLocationUpdates();
 
@@ -87,9 +95,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener( ) {
             @Override
             public void onInfoWindowClick(Marker marker) {
-                Toast.makeText( getApplicationContext(),"Info window clicked", Toast.LENGTH_SHORT).show();
+                Intent building = new Intent(getApplicationContext(), BuildingDisplay.class);
+                building.putExtra("title", marker.getTitle());
+                building.putExtra("facts", factsFromFile);
+                building.putExtra("food", foodFromFile);
+                building.putExtra("gps", gpsFromFile.get(marker.getTitle()));
+                startActivity(building);
             }});
 
+        //printAllMarkers();
     }
 
 
@@ -102,13 +116,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         //updates latlng to long press location
         userLatLng = point;
         //places visual marker there
-        MarkerOptions at = new MarkerOptions().position(userLatLng).icon(BitmapDescriptorFactory.defaultMarker( BitmapDescriptorFactory.HUE_BLUE)).title("User Location");
+        MarkerOptions at = new MarkerOptions().position(userLatLng).icon(BitmapDescriptorFactory.fromBitmap(resizeMapIcons("manwalking",100,100))).title("User Location");
         markerListener = at;
         mMap.addMarker(at);
+        //moves camera to users location
+
         Toast resetMsg = Toast.makeText(getApplicationContext(),"Tab blue marker to turn location tracking back on.", Toast.LENGTH_SHORT);
         resetMsg.show();
         //turns off updating user position automatically
-        debugging = true;
+        userControlled = true;
 
         //listener to turn back on location checking
         mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener(){
@@ -116,7 +132,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             public boolean onMarkerClick(Marker marker){
                     //see's if the user has clicked on the blue marker, if they have clear map and turn back on location tracking
                     if(marker.getTitle().equals(markerListener.getTitle())){
-                        debugging = false;
+                        userControlled = false;
                         mMap.clear();
                     }
                     else
@@ -172,12 +188,21 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 Looper.myLooper());
     }
 
+    //solution from https://stackoverflow.com/questions/14851641/change-marker-size-in-google-maps-api-v2
+    public Bitmap resizeMapIcons(String iconName,int width, int height){
+        Bitmap imageBitmap = BitmapFactory.decodeResource(getResources(),getResources().getIdentifier(iconName, "drawable", getPackageName()));
+        Bitmap resizedBitmap = Bitmap.createScaledBitmap(imageBitmap, width, height, false);
+        return resizedBitmap;
+    }
 
     public void onLocationChanged(Location location) {
 
         //updates users location
-        if(!debugging)
-        userLatLng = new LatLng(location.getLatitude(), location.getLongitude());
+        if(!userControlled) {
+            //need to reset markers so old ones are cleared off
+            mMap.clear();
+            userLatLng = new LatLng(location.getLatitude(), location.getLongitude());
+        }
         //will move camera to user exactly once, used to give scale of reference for user by moving camera to them
         if(focusedUser == false) {
             CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(userLatLng, 15);
@@ -189,15 +214,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         while(it.hasNext()){
             Map.Entry<String, LatLng> pair = (Map.Entry<String, LatLng>) it.next();
 
-            if(Math.abs(pair.getValue().latitude-userLatLng.latitude) < 0.0009 &&
-               Math.abs(pair.getValue().longitude-userLatLng.longitude) < 0.0009) {
+            if(Math.abs(pair.getValue().latitude-userLatLng.latitude) < 0.0013 &&
+               Math.abs(pair.getValue().longitude-userLatLng.longitude) < 0.0013) {
                 mMap.addMarker(new MarkerOptions().position(pair.getValue()).title(pair.getKey()));
             }
         }
 
 
     }
-    void readFromFile(){
+
+    void readGPSFromFile(){
         String data = null;
         AssetManager am = this.getAssets();
         gpsFromFile = new HashMap<>();
@@ -229,6 +255,85 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     }
 
+    void readFactsFromFile(){
+
+        String data = null;
+        AssetManager am = this.getAssets();
+        factsFromFile = new HashMap<>();
+        try{
+            InputStream is = am.open("facts.txt");
+            int size = is.available();
+            byte[] buffer = new byte[size];
+            is.read(buffer);
+            is.close();
+            data = new String(buffer);
+        } catch(Exception e){
+            e.printStackTrace();
+        }
+
+        String lines[] = data.split("\\n");
+
+        String building = "";
+        int i = 0;
+        while(i < lines.length){
+            String fact = "";
+            if(!lines[i].contains("\t")) {
+                building = lines[i];
+                i++;
+            }
+            //is a line with fact text
+            while(lines[i].contains("\t")){
+                fact += lines[i];
+                i++;
+                if(i == lines.length)
+                    break;
+            }
+        building = building.replaceAll("(\r\t|\r|\t)", "");
+
+        fact = fact.replaceAll("(\r\t|\r|\t)","");
+        factsFromFile.put(building, fact);
+
+        }
+    }
+
+    void readFoodFromFile() {
+
+        String data = null;
+        AssetManager am = this.getAssets();
+        foodFromFile = new HashMap<>();
+        try {
+            InputStream is = am.open("food.txt");
+            int size = is.available();
+            byte[] buffer = new byte[size];
+            is.read(buffer);
+            is.close();
+            data = new String(buffer);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        String lines[] = data.split("\\n");
+        String building = "";
+        int i = 0;
+        while (i < lines.length) {
+            String fact = "";
+            if (!lines[i].contains("\t")) {
+                building = lines[i];
+                i++;
+            }
+            //is a line with fact text
+            while (lines[i].contains("\t")) {
+                //add line separator to help display data in app
+                fact += lines[i]+System.lineSeparator();
+                i++;
+                if (i == lines.length)
+                    break;
+            }
+            building = building.replaceAll("(\r\t|\r|\t)", "");
+            fact = fact.replaceAll("(\t)", "");
+            foodFromFile.put(building, fact);
+        }
+    }
 }
 
 

@@ -1,10 +1,36 @@
 <resources>
     <string name="app_name">Help-A-Hog</string>
-    <string name="directions">Directions</string>
+    <string name="directions">How to Use</string>
     <string name="nearby">Nearby</string>
     <string name="food">Food</string>
     <string name="sports">Sports</string>
     <string name="weather">Weather</string>
     <string name="title_activity_maps">Help-A-Hog Map</string>
     <string name="moreInfo">Click For More Information</string>
+    <string name="funName">Fun Fact:</string>
+    <string name="buildingFood">Hours of Operation:</string>
+    <string name="title_activity_campus_food">Map</string>
+    <string name="title_activity_directions_display">Map</string>
+    <string name="directionsApiKey">AIzaSyAZ94j-qfdRYGqALqdB2NpFkTAvukpZFS0</string>
+    <string name="weatherTitle">Weather In Your Area</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="action_add_favourite">Add to Favorites</string>
+    <string name="action_play_next">Show Me More</string>
+    <string name="backdrop_title">Razorbacks Sports Center</string>
+    <string name="backdrop_subtitle">Check here for all things Razorback Athletics</string>
+    <string name="appbar_scrolling_view_behavior" translatable="false">android.support.design.widget.AppBarLayout$ScrollingViewBehavior</string>
+
+    <string name="weatherInfo">To use the Weather feature, click the \"Weather\" button on the main screen. The weather data will be loaded
+    as soon as an Internet connection can be established with the OpenWeather API.</string>
+    <string name="nearbyInfo">To use the Nearby feature, click the \"Nearby\" button on the main screen. You will now see a Maps display with your location, and the surrounding buildings on screen.
+    Add your own marker by long pressing at any location on the map, if a building is nearby, you will see a corresponding marker placed on the screen. If you click on the marker
+    you will be shown a dialog with a picture of the building and an option to click for more information. Clicking the popup will bring you to a new screen with more information on the building.
+    From here you can click on the "Take Me There" button to receive directions to the building.</string>
+    <string name="foodInfo">To use the Food feature, click the \"Food\" button on the main screen. Food locations across campus will now be displayed on a maps activity. From here you can click
+    the icon of a location and it will provide additional information about food venue. You can then click on the popup and receive more information as well. From this display you will also be able to
+    request directions to that location.</string>
+    <string name="sportsInfo">To use the Sports feature, click the \"Sports\" button on the main screen. This will bring up a new display with various athletics on offer at the U of A. You can then select
+    any of the sports cards and be provided with the option to Show More Info. If you click Show More Info, it will then provide you with relevant information on schedule, scores, and locations for that sport.</string>
+
 </resources>

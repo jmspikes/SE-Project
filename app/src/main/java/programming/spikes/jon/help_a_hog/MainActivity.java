@@ -44,8 +44,8 @@ public class MainActivity extends AppCompatActivity {
 
             //on click need to go to the Maps activity
             public void onClick(View v) {
-                Toast toast = Toast.makeText(getApplicationContext(), "Directions", Toast.LENGTH_SHORT);
-                toast.show();
+                Intent direction = new Intent(getApplicationContext(), HowToUse.class);
+                startActivity(direction);
             }
         });
         //nearby on click
@@ -62,8 +62,8 @@ public class MainActivity extends AppCompatActivity {
         food.setOnClickListener(new View.OnClickListener(){
 
             public void onClick(View v) {
-                Toast toast = Toast.makeText(getApplicationContext(), "Food", Toast.LENGTH_SHORT);
-                toast.show();
+                Intent food = new Intent(getApplicationContext(), CampusFood.class);
+                startActivity(food);
             }
         });
 
@@ -71,8 +71,8 @@ public class MainActivity extends AppCompatActivity {
         sports.setOnClickListener(new View.OnClickListener(){
 
             public void onClick(View v) {
-                Toast toast = Toast.makeText(getApplicationContext(), "Sports", Toast.LENGTH_SHORT);
-                toast.show();
+                Intent sports = new Intent(getApplicationContext(), activity_sport_main.class);
+                startActivity(sports);
             }
         });
 
@@ -80,8 +80,8 @@ public class MainActivity extends AppCompatActivity {
         weather.setOnClickListener(new View.OnClickListener(){
 
             public void onClick(View v) {
-                Toast toast = Toast.makeText(getApplicationContext(), "Weather", Toast.LENGTH_SHORT);
-                toast.show();
+                Intent weather = new Intent(getApplicationContext(), WeatherActivity.class);
+                startActivity(weather);
             }
         });
     }

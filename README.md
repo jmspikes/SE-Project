@@ -6,7 +6,7 @@ Help-A-Hog is a student created Android application that assists users in naviga
 ## Weather Screen
 ![Weather Screen](https://github.com/jmspikes/SE-Project/blob/master/phoneview%202.PNG)
 ## Nearby Screen
-![Nearby Screen](https://github.com/jmspikes/SE-Project/blob/master/phoneview5.PNG)
 ![Nearby Screen](https://github.com/jmspikes/SE-Project/blob/master/phoneview6.PNG)
+![Nearby Screen](https://github.com/jmspikes/SE-Project/blob/master/phoneview5.PNG)
 ## Sports Screen
 ![Sports Screen](https://github.com/jmspikes/SE-Project/blob/master/phoneview4.PNG)

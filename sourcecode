@@ -1,0 +1,1437 @@
+package programming.spikes.jon.help_a_hog;
+import android.content.Intent;
+import android.support.constraint.ConstraintLayout;
+import android.support.constraint.ConstraintSet;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
+import java.util.HashMap;
+public class BuildingDisplay extends AppCompatActivity {
+   String fromMaps;
+   ImageView buildingPic;
+   TextView buildingName;
+   TextView funBody;
+   TextView foodBody;
+   TextView buildingFood;
+   Button direction;
+   Button goBack;
+   HashMap<String, String> fromFile;
+   HashMap<String, String> foodFromFile;
+   LatLng gpsCords;
+   @Override
+   protected void onCreate(Bundle savedInstanceState) {
+       super.onCreate(savedInstanceState);
+       setContentView(R.layout.activity_building_display);
+       //handles passing hashmap between intents
+       Intent get = getIntent();
+       fromMaps =  get.getStringExtra("title");
+       fromFile = (HashMap<String, String>) get.getSerializableExtra("facts");
+       foodFromFile = (HashMap<String, String>) get.getSerializableExtra("food");
+       gpsCords = get.getParcelableExtra("gps");
+       //used to parse picture name
+       String pic = fromMaps.toLowerCase();
+       pic = pic.replaceAll("\\s","");
+       //gets building container
+       buildingPic = findViewById(R.id.buildingPic);
+       //sets picture
+       int imageId = this.getResources().getIdentifier(pic, "drawable", this.getPackageName());
+       //sets a default image if no image is found
+       if(imageId == 0)
+           imageId = this.getResources().getIdentifier("defaultpic", "drawable", this.getPackageName());
+       //applies the image
+       buildingPic.setImageResource(imageId);
+       //gets building name container
+       buildingName = findViewById(R.id.buildingName);
+       //sets the text name of building
+       buildingName.setText(fromMaps);
+       //gets fun text container
+       funBody = findViewById(R.id.funBody);
+       //sets fun text information
+       funBody.setMovementMethod(new ScrollingMovementMethod());
+       //sets default text if there isn't a fun fact
+       if(fromFile.containsKey(fromMaps))
+           funBody.setText(fromFile.get(fromMaps));
+       else
+           funBody.setText("Check back shortly for new fun facts!");
+       //gets food body dialog
+       foodBody = findViewById(R.id.foodBody);
+       //allows scrolling
+       foodBody.setMovementMethod(new ScrollingMovementMethod());
+       //gets the text information, sets invisible if not
+       if(foodFromFile.containsKey(fromMaps))
+           foodBody.setText(foodFromFile.get(fromMaps));
+       else{
+           //sets items to not be seen
+           foodBody.setVisibility(View.INVISIBLE);
+           buildingFood = findViewById(R.id.buildingFood);
+           buildingFood.setVisibility(View.INVISIBLE);
+       }
+       direction = findViewById(R.id.directions);
+       goBack = findViewById(R.id.goBack);
+       goBack.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               finish();
+           }
+       });
+       direction.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               Intent directions = new Intent(getApplicationContext(), DirectionsDisplay.class);
+               directions.putExtra("title" , fromMaps);
+               directions.putExtra("gps", gpsCords);
+               startActivity(directions);
+           }
+       });
+   }
+   }
+Campus Food
+package programming.spikes.jon.help_a_hog;
+import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.content.res.AssetManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.location.Location;
+import android.os.Looper;
+import android.support.v4.app.FragmentActivity;
+import android.os.Bundle;
+import com.google.android.gms.location.LocationCallback;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationResult;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.location.LocationSettingsRequest;
+import com.google.android.gms.location.SettingsClient;
+import com.google.android.gms.maps.CameraUpdate;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.Polyline;
+import com.google.android.gms.maps.model.PolylineOptions;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import static com.google.android.gms.location.LocationServices.getFusedLocationProviderClient;
+public class CampusFood extends FragmentActivity implements OnMapReadyCallback {
+   private GoogleMap mMap;
+   SupportMapFragment mapFragment;
+   private LocationRequest mLocationRequest;
+   LatLng userLatLng;
+   private long UPDATE_INTERVAL = 1000;
+   private long FASTEST_INTERVAL = 1000;
+   boolean focusedUser = false;
+   HashMap<String, LatLng> foodGPS;
+   HashMap<String, String> factsFromFile;
+   HashMap<String, String> foodFromFile;
+   CustomInfoWindow custom;
+   LatLng gpsCords;
+   @SuppressLint("MissingPermission")
+   @Override
+   protected void onCreate(Bundle savedInstanceState) {
+       super.onCreate(savedInstanceState);
+       setContentView(R.layout.activity_campus_food);
+       // Obtain the SupportMapFragment and get notified when the map is ready to be used.
+       mapFragment = (SupportMapFragment) getSupportFragmentManager()
+               .findFragmentById(R.id.map);
+       mapFragment.getMapAsync(this);
+       readFoodGPSFromFile();
+       readFactsFromFile();
+       readFoodFromFile();
+       startLocationUpdates();
+   }
+   @SuppressLint("MissingPermission")
+   @Override
+   public void onMapReady(GoogleMap googleMap) {
+       mMap = googleMap;
+       googleMap.setMyLocationEnabled(true);
+       //used to set camera to union initially
+       LatLng union = new LatLng(36.068679, -94.175759);
+       //moves camera to campus
+       //10=city 15=streets 20=buildings
+       CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(union, 15);
+       mMap.moveCamera(cameraUpdate);
+       custom = new CustomInfoWindow(this, foodGPS);
+       mMap.setInfoWindowAdapter(custom);
+       mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener( ) {
+           @Override
+           public void onInfoWindowClick(Marker marker) {
+               Intent building = new Intent(getApplicationContext(), BuildingDisplay.class);
+               building.putExtra("title", marker.getTitle());
+               building.putExtra("facts", factsFromFile);
+               building.putExtra("food", foodFromFile);
+               building.putExtra("gps", foodGPS.get(marker.getTitle()));
+               startActivity(building);
+           }});
+       //iteartes over all buildings and puts a marker on the map
+       Iterator it = foodGPS.entrySet().iterator();
+       while(it.hasNext()){
+           Map.Entry<String, LatLng> pair = (Map.Entry<String, LatLng>) it.next();
+           String pic = pair.getKey().toLowerCase();
+           pic = pic.replaceAll("\\s","");
+           mMap.addMarker(new MarkerOptions().position(pair.getValue()).title(pair.getKey()).icon(BitmapDescriptorFactory.fromBitmap(resizeMapIcons(pic,80,80))));
+       }
+   }
+   // Trigger new location updates at interval
+   //https://github.com/codepath/android_guides/wiki/Retrieving-Location-with-LocationServices-API
+   @SuppressLint("MissingPermission")
+   protected void startLocationUpdates() {
+       // Create the location request to start receiving updates
+       mLocationRequest = new LocationRequest();
+       mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+       mLocationRequest.setInterval(UPDATE_INTERVAL);
+       mLocationRequest.setFastestInterval(FASTEST_INTERVAL);
+       // Create LocationSettingsRequest object using location request
+       LocationSettingsRequest.Builder builder = new LocationSettingsRequest.Builder();
+       builder.addLocationRequest(mLocationRequest);
+       LocationSettingsRequest locationSettingsRequest = builder.build();
+       // Check whether location settings are satisfied
+       // https://developers.google.com/android/reference/com/google/android/gms/location/SettingsClient
+       SettingsClient settingsClient = LocationServices.getSettingsClient(this);
+       settingsClient.checkLocationSettings(locationSettingsRequest);
+       // new Google API SDK v11 uses getFusedLocationProviderClient(this)
+       getFusedLocationProviderClient(this).requestLocationUpdates(mLocationRequest, new LocationCallback() {
+                   @Override
+                   public void onLocationResult(LocationResult locationResult) {
+                       // do work here
+                       onLocationChanged(locationResult.getLastLocation());
+                   }
+               },
+               Looper.myLooper());
+   }
+   //solution from https://stackoverflow.com/questions/14851641/change-marker-size-in-google-maps-api-v2
+   public Bitmap resizeMapIcons(String iconName, int width, int height){
+       Bitmap imageBitmap = BitmapFactory.decodeResource(getResources(),getResources().getIdentifier(iconName, "drawable", getPackageName()));
+       Bitmap resizedBitmap = Bitmap.createScaledBitmap(imageBitmap, width, height, false);
+       return resizedBitmap;
+   }
+   public void onLocationChanged(Location location) {
+       //updates users location
+       userLatLng = new LatLng(location.getLatitude(), location.getLongitude());
+       //will move camera to user exactly once, used to give scale of reference for user by moving camera to them
+       if(focusedUser == false) {
+           CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(userLatLng, 15);
+           mMap.moveCamera(cameraUpdate);
+           focusedUser = true;
+       }
+   }
+   void readFoodGPSFromFile(){
+       String data = null;
+       AssetManager am = this.getAssets();
+       foodGPS = new HashMap<>();
+       try{
+           InputStream is = am.open("foodGPS.txt");
+           int size = is.available();
+           byte[] buffer = new byte[size];
+           is.read(buffer);
+           is.close();
+           data = new String(buffer);
+       } catch(Exception e){
+           e.printStackTrace();
+       }
+       //format text to be able to be put into hashmap
+       data = data.replaceAll("(\\r|\\t|)", "");
+       String[] split = data.split("\n");
+       ArrayList<String> items = new ArrayList<String>();
+       for(int i = 0; i < split.length; i++){
+           if(!split[i].isEmpty() && split[i].length() != 1)
+               items.add(split[i]);
+       }
+       //takes formatted text and puts longlat as value and building name as key
+       for(int i = 0; i < items.size()-1; i+=2){
+           String lstring = items.get(i+1);
+           String[] two = lstring.split("\\s+");
+           LatLng location = new LatLng(Double.parseDouble(two[0]), Double.parseDouble(two[1]));
+           foodGPS.put(items.get(i), location);
+       }
+   }
+   void readFactsFromFile(){
+       String data = null;
+       AssetManager am = this.getAssets();
+       factsFromFile = new HashMap<>();
+       try{
+           InputStream is = am.open("foodFacts.txt");
+           int size = is.available();
+           byte[] buffer = new byte[size];
+           is.read(buffer);
+           is.close();
+           data = new String(buffer);
+       } catch(Exception e){
+           e.printStackTrace();
+       }
+       String lines[] = data.split("\\n");
+       String building = "";
+       int i = 0;
+       while(i < lines.length){
+           String fact = "";
+           if(!lines[i].contains("\t")) {
+               building = lines[i];
+               i++;
+           }
+           //is a line with fact text
+           while(lines[i].contains("\t")){
+               fact += lines[i];
+               i++;
+               if(i == lines.length)
+                   break;
+           }
+           building = building.replaceAll("(\r\t|\r|\t)", "");
+           fact = fact.replaceAll("(\r\t|\r|\t)","");
+           factsFromFile.put(building, fact);
+       }
+   }
+   void readFoodFromFile() {
+       String data = null;
+       AssetManager am = this.getAssets();
+       foodFromFile = new HashMap<>();
+       try {
+           InputStream is = am.open("food.txt");
+           int size = is.available();
+           byte[] buffer = new byte[size];
+           is.read(buffer);
+           is.close();
+           data = new String(buffer);
+       } catch (Exception e) {
+           e.printStackTrace();
+       }
+       String lines[] = data.split("\\n");
+       String building = "";
+       int i = 0;
+       while (i < lines.length) {
+           String fact = "";
+           if (!lines[i].contains("\t")) {
+               building = lines[i];
+               i++;
+           }
+           //is a line with fact text
+           while (lines[i].contains("\t")) {
+               //add line separator to help display data in app
+               fact += lines[i]+System.lineSeparator();
+               i++;
+               if (i == lines.length)
+                   break;
+           }
+           building = building.replaceAll("(\r\t|\r|\t)", "");
+           fact = fact.replaceAll("(\t)", "");
+           foodFromFile.put(building, fact);
+       }
+   }
+   }
+Custom Info Window
+package programming.spikes.jon.help_a_hog;
+import android.app.Activity;
+import android.content.Context;
+import android.support.constraint.ConstraintLayout;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+public class CustomInfoWindow implements GoogleMap.InfoWindowAdapter {
+   private Context context;
+   HashMap<String, LatLng> fromFile;
+   public CustomInfoWindow(Context context, HashMap<String, LatLng> fromFile){
+       this.fromFile = fromFile;
+       this.context = context;
+   }
+   @Override
+   public View getInfoWindow(Marker marker) {
+       return null;
+   }
+   @Override
+   public View getInfoContents(Marker marker) {
+       //allows view to be edited
+       View view = ((Activity)context).getLayoutInflater()
+               .inflate(R.layout.custinfo, null);
+       view.setLayoutParams(new ConstraintLayout.LayoutParams(500,500));
+       //buildling information
+       TextView buildingName = view.findViewById(R.id.buildingName);
+       ImageView buildingPic = view.findViewById(R.id.buildingPic);
+       buildingName.setText(marker.getTitle());
+       //gets markers name and trims it to match picture names
+       String pic = marker.getTitle().toLowerCase();
+       pic = pic.replaceAll("\\s","");
+       //gets picture name and provides it to info window
+       if(fromFile.containsKey(marker.getTitle())){
+           int imageId = context.getResources().getIdentifier(pic, "drawable", context.getPackageName());
+           buildingPic.setImageResource(imageId);
+       }
+       return view;
+   }
+   }
+Direction Display
+package programming.spikes.jon.help_a_hog;
+import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.location.Address;
+import android.location.Geocoder;
+import android.location.Location;
+import android.os.Looper;
+import android.support.v4.app.FragmentActivity;
+import android.os.Bundle;
+import com.google.android.gms.location.LocationCallback;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationResult;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.location.LocationSettingsRequest;
+import com.google.android.gms.location.SettingsClient;
+import com.google.android.gms.maps.CameraUpdate;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.UiSettings;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.PolylineOptions;
+import com.google.maps.DirectionsApi;
+import com.google.maps.GeoApiContext;
+import com.google.maps.model.DirectionsResult;
+import com.google.maps.model.DirectionsRoute;
+import com.google.maps.model.TravelMode;
+import com.google.maps.android.PolyUtil;
+import org.joda.time.DateTime;
+import java.util.List;
+import java.util.Locale;
+import java.util.concurrent.TimeUnit;
+import static com.google.android.gms.location.LocationServices.getFusedLocationProviderClient;
+public class DirectionsDisplay extends FragmentActivity implements OnMapReadyCallback {
+   private GoogleMap mMap;
+   LatLng userLatLng;
+   LatLng destination;
+   private LocationRequest mLocationRequest;
+   private long UPDATE_INTERVAL = 1000;
+   private long FASTEST_INTERVAL = 1000;
+   boolean focusedUser = false;
+   private static final int overview = 0;
+   String pic = null;
+   String item = null;
+   int counter = 0;
+   @SuppressLint("MissingPermission")
+   @Override
+   protected void onCreate(Bundle savedInstanceState) {
+       super.onCreate(savedInstanceState);
+       setContentView(R.layout.activity_directions_display);
+       // Obtain the SupportMapFragment and get notified when the map is ready to be used.
+       SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+               .findFragmentById(R.id.map);
+       mapFragment.getMapAsync(this);
+       Intent get = getIntent();
+       destination = get.getParcelableExtra("gps");
+       item = get.getStringExtra("title");
+       pic = item.toLowerCase();
+       pic = pic.replaceAll("\\s","");
+       int imageId = this.getResources().getIdentifier(pic, "drawable", this.getPackageName());
+       //sets a default image if no image is found
+       if(imageId == 0)
+           pic = "defaultpic";
+       startLocationUpdates();
+   }
+   @SuppressLint("MissingPermission")
+   @Override
+   public void onMapReady(GoogleMap googleMap) {
+       mMap = googleMap;
+       googleMap.setMyLocationEnabled(true);
+       //mMap.setTrafficEnabled(false);
+       LatLng union = new LatLng(36.068679, -94.175759);
+       //moves camera to campus
+       //10=city 15=streets 20=buildings
+       CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(union, 15);
+       mMap.moveCamera(cameraUpdate);
+   }
+   // Trigger new location updates at interval
+   //https://github.com/codepath/android_guides/wiki/Retrieving-Location-with-LocationServices-API
+   @SuppressLint("MissingPermission")
+   protected void startLocationUpdates() {
+       // Create the location request to start receiving updates
+       mLocationRequest = new LocationRequest();
+       mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+       mLocationRequest.setInterval(UPDATE_INTERVAL);
+       mLocationRequest.setFastestInterval(FASTEST_INTERVAL);
+       // Create LocationSettingsRequest object using location request
+       LocationSettingsRequest.Builder builder = new LocationSettingsRequest.Builder();
+       builder.addLocationRequest(mLocationRequest);
+       LocationSettingsRequest locationSettingsRequest = builder.build();
+       // Check whether location settings are satisfied
+       // https://developers.google.com/android/reference/com/google/android/gms/location/SettingsClient
+       SettingsClient settingsClient = LocationServices.getSettingsClient(this);
+       settingsClient.checkLocationSettings(locationSettingsRequest);
+       // new Google API SDK v11 uses getFusedLocationProviderClient(this)
+       getFusedLocationProviderClient(this).requestLocationUpdates(mLocationRequest, new LocationCallback() {
+                   @Override
+                   public void onLocationResult(LocationResult locationResult) {
+                       // do work here
+                       onLocationChanged(locationResult.getLastLocation());
+                   }
+               },
+               Looper.myLooper());
+   }
+   //https://github.com/pjwelcome/GoogleMapsDirections/blob/master/app/src/main/java/com/multimeleon/android/googlemapsdirections/MapsActivity.java
+   public void onLocationChanged(Location location) {
+       userLatLng = new LatLng(location.getLatitude(), location.getLongitude());
+       //will move camera to user exactly once, used to give scale of reference for user by moving camera to them
+       if(focusedUser == false) {
+           CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(userLatLng, 15);
+           mMap.moveCamera(cameraUpdate);
+           focusedUser = true;
+       }
+       Geocoder geocoder;
+       List<Address> userAddress;
+       List<Address> destAddress;
+       geocoder = new Geocoder(this, Locale.getDefault());
+       setupGoogleMapScreenSettings(mMap);
+       DirectionsResult results = null;
+       try {
+           userAddress = geocoder.getFromLocation(userLatLng.latitude, userLatLng.longitude, 1); // Here 1 represent max location result to returned, by documents it recommended 1 to 5
+           destAddress = geocoder.getFromLocation(destination.latitude, destination.longitude, 1);
+           String userAdd = userAddress.get(0).getAddressLine(0); // If any additional address line present than only, check with max available address lines by getMaxAddressLineIndex()
+           String userCity = userAddress.get(0).getLocality();
+           String userState = userAddress.get(0).getAdminArea();
+           String userCountry = userAddress.get(0).getCountryName();
+           String userPostalCode = userAddress.get(0).getPostalCode();
+           String knownName = userAddress.get(0).getFeatureName();
+           String destAdd = destAddress.get(0).getAddressLine(0);
+           String destCity = destAddress.get(0).getLocality();
+           String destState = destAddress.get(0).getAdminArea();
+           String destCountry = destAddress.get(0).getCountryName();
+           String destPostalCode = destAddress.get(0).getPostalCode();
+           String destName = destAddress.get(0).getFeatureName();
+           String uLoc = userAdd + " " + userCity + " " + userState;
+           String dLoc = destAdd + " " + destCity + " " + destState;
+           results = getDirectionsDetails( uLoc ,dLoc,TravelMode.WALKING);
+       } catch (Exception e) {
+           e.printStackTrace();
+       }
+       if (results != null) {
+           //will clear off markers every 5 seconds
+           if(counter % 5 == 0)
+               mMap.clear();
+           addPolyline(results, mMap);
+           addMarkersToMap(results, mMap);
+           counter++;
+       }
+   }
+   private DirectionsResult getDirectionsDetails(String origin, String destination, TravelMode mode) throws Exception {
+       DateTime now = new DateTime();
+           return DirectionsApi.newRequest(getGeoContext())
+                   .mode(mode)
+                   .origin(origin)
+                   .destination(destination)
+                   .departureTime(now)
+                   .await();
+   }
+   private void setupGoogleMapScreenSettings(GoogleMap mMap) {
+       mMap.setBuildingsEnabled(true);
+       mMap.setIndoorEnabled(true);
+       UiSettings mUiSettings = mMap.getUiSettings();
+       mUiSettings.setZoomControlsEnabled(true);
+       mUiSettings.setCompassEnabled(true);
+       mUiSettings.setMyLocationButtonEnabled(true);
+       mUiSettings.setScrollGesturesEnabled(true);
+       mUiSettings.setZoomGesturesEnabled(true);
+       mUiSettings.setTiltGesturesEnabled(true);
+       mUiSettings.setRotateGesturesEnabled(true);
+   }
+   private void addMarkersToMap(DirectionsResult results, GoogleMap mMap) {
+       mMap.addMarker(new MarkerOptions()
+                       .position(new LatLng(results.routes[overview].legs[overview].startLocation.lat,results.routes[overview].legs[overview].startLocation.lng))
+                       .title(results.routes[overview].legs[overview].startAddress));
+       mMap.addMarker(new MarkerOptions()
+                      .position(new LatLng(results.routes[overview].legs[overview].endLocation.lat,results.routes[overview].legs[overview].endLocation.lng))
+                      .title(item)
+                      .snippet(getEndLocationTitle(results))
+                      .icon(BitmapDescriptorFactory.fromBitmap(resizeMapIcons(pic,80,80))));
+   }
+   //solution from https://stackoverflow.com/questions/14851641/change-marker-size-in-google-maps-api-v2
+   public Bitmap resizeMapIcons(String iconName, int width, int height){
+       Bitmap imageBitmap = BitmapFactory.decodeResource(getResources(),getResources().getIdentifier(iconName, "drawable", getPackageName()));
+       Bitmap resizedBitmap = Bitmap.createScaledBitmap(imageBitmap, width, height, false);
+       return resizedBitmap;
+   }
+   private void addPolyline(DirectionsResult results, GoogleMap mMap) {
+       List<LatLng> decodedPath = PolyUtil.decode(results.routes[overview].overviewPolyline.getEncodedPath());
+       mMap.addPolyline(new PolylineOptions().addAll(decodedPath).color(Color.argb(85, 47, 170, 212)));
+   }
+   private String getEndLocationTitle(DirectionsResult results){
+       return  "Time: "+ results.routes[overview].legs[overview].duration.humanReadable + " Distance: " + results.routes[overview].legs[overview].distance.humanReadable;
+   }
+   private GeoApiContext getGeoContext() {
+       GeoApiContext geoApiContext = new GeoApiContext();
+       return geoApiContext.setQueryRateLimit(3)
+               .setApiKey(getString(R.string.directionsApiKey))
+               .setConnectTimeout(1, TimeUnit.SECONDS)
+               .setReadTimeout(1, TimeUnit.SECONDS)
+               .setWriteTimeout(1, TimeUnit.SECONDS);
+   }
+   }
+Help Activity
+package programming.spikes.jon.help_a_hog;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
+import android.widget.TextView;
+public class HowToUse extends AppCompatActivity {
+   TextView food, sport, weather, nearby;
+   @Override
+   protected void onCreate(Bundle savedInstanceState) {
+       super.onCreate(savedInstanceState);
+       setContentView(R.layout.activity_how_to_use);
+       food = findViewById(R.id.foodBody);
+       food.setMovementMethod(new ScrollingMovementMethod());
+       sport = findViewById(R.id.sportBody);
+       sport.setMovementMethod(new ScrollingMovementMethod());
+       weather = findViewById(R.id.weatherBody);
+       weather.setMovementMethod(new ScrollingMovementMethod());
+       nearby = findViewById(R.id.nearbyBody);
+       nearby.setMovementMethod(new ScrollingMovementMethod());
+   }
+   }
+Main Activity
+package programming.spikes.jon.help_a_hog;
+import android.content.Intent;
+import android.support.v4.app.ActivityCompat;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
+import com.google.android.gms.maps.model.LatLng;
+import java.util.HashMap;
+import static android.Manifest.permission.ACCESS_FINE_LOCATION;
+public class MainActivity extends AppCompatActivity {
+   Button directions;
+   Button nearby;
+   Button food;
+   Button sports;
+   Button weather;
+   HashMap<String, LatLng> gpsFromFile;
+   @Override
+   protected void onCreate(Bundle savedInstanceState) {
+       super.onCreate(savedInstanceState);
+       setContentView(R.layout.activity_main);
+       requestPermission();
+       //sets on click listeners for each button
+       setOnClicks();
+   }
+   private void requestPermission(){ActivityCompat.requestPermissions(this, new String[]{ACCESS_FINE_LOCATION}, 1); }
+   void setOnClicks() {
+       //directions on click
+       directions = findViewById(R.id.directions);
+       directions.setOnClickListener(new View.OnClickListener() {
+           //on click need to go to the Maps activity
+           public void onClick(View v) {
+               Intent direction = new Intent(getApplicationContext(), HowToUse.class);
+               startActivity(direction);
+           }
+       });
+       //nearby on click
+       nearby = findViewById(R.id.nearby);
+       nearby.setOnClickListener(new View.OnClickListener(){
+           public void onClick(View v) {
+               Intent mapActivity = new Intent(getApplicationContext(), MapsActivity.class);
+               startActivity(mapActivity);
+           }
+       });
+       //food on click
+       food = findViewById(R.id.fact2);
+       food.setOnClickListener(new View.OnClickListener(){
+           public void onClick(View v) {
+               Intent food = new Intent(getApplicationContext(), CampusFood.class);
+               startActivity(food);
+           }
+       });
+       sports = findViewById(R.id.sports);
+       sports.setOnClickListener(new View.OnClickListener(){
+           public void onClick(View v) {
+               Intent sports = new Intent(getApplicationContext(), activity_sport_main.class);
+               startActivity(sports);
+           }
+       });
+       weather = findViewById(R.id.weather);
+       weather.setOnClickListener(new View.OnClickListener(){
+           public void onClick(View v) {
+               Intent weather = new Intent(getApplicationContext(), WeatherActivity.class);
+               startActivity(weather);
+           }
+       });
+   }
+   }
+Maps Activity
+package programming.spikes.jon.help_a_hog;
+import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.content.res.AssetManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.location.Location;
+import android.os.Handler;
+import android.os.Looper;
+import android.support.v4.app.FragmentActivity;
+import android.os.Bundle;
+import android.util.Log;
+import android.widget.Toast;
+import com.google.android.gms.location.LocationCallback;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationResult;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.location.LocationSettingsRequest;
+import com.google.android.gms.location.SettingsClient;
+import com.google.android.gms.maps.CameraUpdate;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import static com.google.android.gms.location.LocationServices.getFusedLocationProviderClient;
+public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, GoogleMap.OnMapLongClickListener {
+   //declarations
+   private GoogleMap mMap;
+   LatLng userLatLng;
+   private LocationRequest mLocationRequest;
+   private long UPDATE_INTERVAL = 4000;
+   private long FASTEST_INTERVAL = 4000;
+   SupportMapFragment mapFragment;
+   HashMap<String, LatLng> gpsFromFile;
+   HashMap<String, String> factsFromFile;
+   HashMap<String, String> foodFromFile;
+   boolean focusedUser = false;
+   boolean userControlled = false;
+   MarkerOptions markerListener = null;
+   CustomInfoWindow custom;
+   //suppressing permission checks since permission has been granted in main activity
+   @SuppressLint("MissingPermission")
+   @Override
+   protected void onCreate(Bundle savedInstanceState) {
+       super.onCreate(savedInstanceState);
+       setContentView(R.layout.activity_maps);
+       // Obtain the SupportMapFragment and get notified when the map is ready to be used.
+       mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
+       mapFragment.getMapAsync(this);
+       //reads GPS coordinates from file
+       readGPSFromFile();
+       readFactsFromFile();
+       readFoodFromFile();
+       //gets users location and updates it, zooms camera to location
+       startLocationUpdates();
+   }
+   //suppressing permission checks since permission has been granted in main activity
+   @SuppressLint("MissingPermission")
+   @Override
+   public void onMapReady(GoogleMap googleMap) {
+       mMap = googleMap;
+       //allows for clicking to see buildings at a new location
+       mMap.setOnMapLongClickListener(this);
+       googleMap.setMyLocationEnabled(true);
+       //used to set camera to union initially
+       LatLng union = new LatLng(36.068679, -94.175759);
+       //moves camera to campus
+       //10=city 15=streets 20=buildings
+       CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(union, 15);
+       mMap.moveCamera(cameraUpdate);
+       custom = new CustomInfoWindow(this, gpsFromFile);
+       mMap.setInfoWindowAdapter(custom);
+       mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener( ) {
+           @Override
+           public void onInfoWindowClick(Marker marker) {
+               Intent building = new Intent(getApplicationContext(), BuildingDisplay.class);
+               building.putExtra("title", marker.getTitle());
+               building.putExtra("facts", factsFromFile);
+               building.putExtra("food", foodFromFile);
+               building.putExtra("gps", gpsFromFile.get(marker.getTitle()));
+               startActivity(building);
+           }});
+       //printAllMarkers();
+   }
+   //used to set location on long click, for debugging
+   @Override
+   public void onMapLongClick(LatLng point){
+       //resets map, needed to draw accurate markers
+       mMap.clear();
+       //updates latlng to long press location
+       userLatLng = point;
+       //places visual marker there
+       MarkerOptions at = new MarkerOptions().position(userLatLng).icon(BitmapDescriptorFactory.fromBitmap(resizeMapIcons("manwalking",100,100))).title("User Location");
+       markerListener = at;
+       mMap.addMarker(at);
+       //moves camera to users location
+       Toast resetMsg = Toast.makeText(getApplicationContext(),"Tab blue marker to turn location tracking back on.", Toast.LENGTH_SHORT);
+       resetMsg.show();
+       //turns off updating user position automatically
+       userControlled = true;
+       //listener to turn back on location checking
+       mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener(){
+           public boolean onMarkerClick(Marker marker){
+                   //see's if the user has clicked on the blue marker, if they have clear map and turn back on location tracking
+                   if(marker.getTitle().equals(markerListener.getTitle())){
+                       userControlled = false;
+                       mMap.clear();
+                   }
+                   else
+                   //shows the building info window
+                       marker.showInfoWindow();
+                   return true;
+               }
+           });
+   }
+   //for debugging purposes, will print all markers for verification
+   void printAllMarkers(){
+       Iterator it = gpsFromFile.entrySet().iterator();
+       while(it.hasNext()){
+           Map.Entry<String, LatLng> pair = (Map.Entry<String, LatLng>) it.next();
+           mMap.addMarker(new MarkerOptions().position(pair.getValue()).title(pair.getKey()));
+       }
+   }
+   // Trigger new location updates at interval
+   //https://github.com/codepath/android_guides/wiki/Retrieving-Location-with-LocationServices-API
+   @SuppressLint("MissingPermission")
+   protected void startLocationUpdates() {
+       // Create the location request to start receiving updates
+       mLocationRequest = new LocationRequest();
+       mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+       mLocationRequest.setInterval(UPDATE_INTERVAL);
+       mLocationRequest.setFastestInterval(FASTEST_INTERVAL);
+       // Create LocationSettingsRequest object using location request
+       LocationSettingsRequest.Builder builder = new LocationSettingsRequest.Builder();
+       builder.addLocationRequest(mLocationRequest);
+       LocationSettingsRequest locationSettingsRequest = builder.build();
+       // Check whether location settings are satisfied
+       // https://developers.google.com/android/reference/com/google/android/gms/location/SettingsClient
+       SettingsClient settingsClient = LocationServices.getSettingsClient(this);
+       settingsClient.checkLocationSettings(locationSettingsRequest);
+       // new Google API SDK v11 uses getFusedLocationProviderClient(this)
+       getFusedLocationProviderClient(this).requestLocationUpdates(mLocationRequest, new LocationCallback() {
+                   @Override
+                   public void onLocationResult(LocationResult locationResult) {
+                       // do work here
+                       onLocationChanged(locationResult.getLastLocation());
+                   }
+               },
+               Looper.myLooper());
+   }
+   //solution from https://stackoverflow.com/questions/14851641/change-marker-size-in-google-maps-api-v2
+   public Bitmap resizeMapIcons(String iconName,int width, int height){
+       Bitmap imageBitmap = BitmapFactory.decodeResource(getResources(),getResources().getIdentifier(iconName, "drawable", getPackageName()));
+       Bitmap resizedBitmap = Bitmap.createScaledBitmap(imageBitmap, width, height, false);
+       return resizedBitmap;
+   }
+   public void onLocationChanged(Location location) {
+       //updates users location
+       if(!userControlled) {
+           //need to reset markers so old ones are cleared off
+           mMap.clear();
+           userLatLng = new LatLng(location.getLatitude(), location.getLongitude());
+       }
+       //will move camera to user exactly once, used to give scale of reference for user by moving camera to them
+       if(focusedUser == false) {
+           CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(userLatLng, 15);
+           mMap.moveCamera(cameraUpdate);
+           focusedUser = true;
+       }
+       //iteartes over all buildings and puts a marker on the map
+       Iterator it = gpsFromFile.entrySet().iterator();
+       while(it.hasNext()){
+           Map.Entry<String, LatLng> pair = (Map.Entry<String, LatLng>) it.next();
+           if(Math.abs(pair.getValue().latitude-userLatLng.latitude) < 0.0013 &&
+              Math.abs(pair.getValue().longitude-userLatLng.longitude) < 0.0013) {
+               mMap.addMarker(new MarkerOptions().position(pair.getValue()).title(pair.getKey()));
+           }
+       }
+   }
+   void readGPSFromFile(){
+       String data = null;
+       AssetManager am = this.getAssets();
+       gpsFromFile = new HashMap<>();
+       try{
+           InputStream is = am.open("GPS_Mid.txt");
+           int size = is.available();
+           byte[] buffer = new byte[size];
+           is.read(buffer);
+           is.close();
+           data = new String(buffer);
+       } catch(Exception e){
+           e.printStackTrace();
+       }
+       //format text to be able to be put into hashmap
+       data = data.replaceAll("(\\r|\\t|)", "");
+       String[] split = data.split("\n");
+       ArrayList<String> items = new ArrayList<String>();
+       for(int i = 0; i < split.length; i++){
+           if(!split[i].isEmpty() && split[i].length() != 1)
+               items.add(split[i]);
+       }
+       //takes formatted text and puts longlat as value and building name as key
+       for(int i = 0; i < items.size()-1; i+=2){
+           String lstring = items.get(i+1);
+           String[] two = lstring.split("\\s+");
+           LatLng location = new LatLng(Double.parseDouble(two[0]), Double.parseDouble(two[1]));
+           gpsFromFile.put(items.get(i), location);
+       }
+   }
+   void readFactsFromFile(){
+       String data = null;
+       AssetManager am = this.getAssets();
+       factsFromFile = new HashMap<>();
+       try{
+           InputStream is = am.open("facts.txt");
+           int size = is.available();
+           byte[] buffer = new byte[size];
+           is.read(buffer);
+           is.close();
+           data = new String(buffer);
+       } catch(Exception e){
+           e.printStackTrace();
+       }
+       String lines[] = data.split("\\n");
+       String building = "";
+       int i = 0;
+       while(i < lines.length){
+           String fact = "";
+           if(!lines[i].contains("\t")) {
+               building = lines[i];
+               i++;
+           }
+           //is a line with fact text
+           while(lines[i].contains("\t")){
+               fact += lines[i];
+               i++;
+               if(i == lines.length)
+                   break;
+           }
+       building = building.replaceAll("(\r\t|\r|\t)", "");
+       fact = fact.replaceAll("(\r\t|\r|\t)","");
+       factsFromFile.put(building, fact);
+       }
+   }
+   void readFoodFromFile() {
+       String data = null;
+       AssetManager am = this.getAssets();
+       foodFromFile = new HashMap<>();
+       try {
+           InputStream is = am.open("food.txt");
+           int size = is.available();
+           byte[] buffer = new byte[size];
+           is.read(buffer);
+           is.close();
+           data = new String(buffer);
+       } catch (Exception e) {
+           e.printStackTrace();
+       }
+       String lines[] = data.split("\\n");
+       String building = "";
+       int i = 0;
+       while (i < lines.length) {
+           String fact = "";
+           if (!lines[i].contains("\t")) {
+               building = lines[i];
+               i++;
+           }
+           //is a line with fact text
+           while (lines[i].contains("\t")) {
+               //add line separator to help display data in app
+               fact += lines[i]+System.lineSeparator();
+               i++;
+               if (i == lines.length)
+                   break;
+           }
+           building = building.replaceAll("(\r\t|\r|\t)", "");
+           fact = fact.replaceAll("(\t)", "");
+           foodFromFile.put(building, fact);
+       }
+   }
+   }
+Sports Picture Activity
+package programming.spikes.jon.help_a_hog;
+public class SportPic {
+    String name;
+    String record;
+    int thumbnail;
+    public SportPic(){
+    }
+    public SportPic(String name, String record, int thumbnail){
+        this.name = name;
+        this.record = record;
+        this.thumbnail = thumbnail;
+    }
+    public String getName(){
+        return name;
+    }
+    public void setName(String name){
+        this.name = name;
+    }
+    public String getRecord(){
+        return record;
+    }
+    public void setRecord(String record){
+        this.record = record;
+    }
+    public int getThumbnail(){
+        return thumbnail;
+    }
+    public void setThumbnail(int thumbnail){
+        this.thumbnail = thumbnail;
+    }
+    }
+Sports Adapter
+package programming.spikes.jon.help_a_hog;
+import android.content.Context;
+import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.PopupMenu;
+import android.widget.TextView;
+import android.widget.Toast;
+import com.bumptech.glide.Glide;
+import java.util.List;
+public class SportsAdapter extends RecyclerView.Adapter<SportsAdapter.MyViewHolder> {
+   public Context mContext;
+   public List<SportPic> albumList;
+   public class MyViewHolder extends RecyclerView.ViewHolder{
+       TextView title, count;
+       ImageView thumbnail, overflow;
+       public MyViewHolder(View view){
+           super(view);
+           title =  view.findViewById(R.id.title);
+           count =  view.findViewById(R.id.count);
+           thumbnail = view.findViewById(R.id.thumbnail);
+           overflow = view.findViewById(R.id.overflow);
+       }
+   }
+   public SportsAdapter(Context mContext, List<SportPic> albumList){
+       this.mContext = mContext;
+       this.albumList = albumList;
+   }
+   @Override
+   public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+       View itemView = LayoutInflater.from(parent.getContext())
+               .inflate(R.layout.sport_card, parent, false);
+       return new MyViewHolder(itemView);
+   }
+   @Override
+   public void onBindViewHolder(final MyViewHolder holder, int position) {
+       SportPic sport = albumList.get(position);
+       holder.title.setText(sport.getName());
+       holder.count.setText("Record: " + sport.getRecord());
+       // loading album cover using Glide library
+       Glide.with(mContext).load(sport.getThumbnail()).into(holder.thumbnail);
+       holder.overflow.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View view) {
+               showPopupMenu(holder.overflow);
+           }
+       });
+   }
+   private void showPopupMenu(View view) {
+       // inflate menu
+       PopupMenu popup = new PopupMenu(mContext, view);
+       MenuInflater inflater = popup.getMenuInflater();
+       inflater.inflate(R.menu.menu_album, popup.getMenu());
+       popup.setOnMenuItemClickListener(new MyMenuItemClickListener());
+       popup.show();
+   }
+   class MyMenuItemClickListener implements PopupMenu.OnMenuItemClickListener {
+       public MyMenuItemClickListener() {
+       }
+       @Override
+       public boolean onMenuItemClick(MenuItem menuItem) {
+           switch (menuItem.getItemId()) {
+               case R.id.action_add_favourite:
+                   Toast.makeText(mContext, "Under Construction", Toast.LENGTH_SHORT).show();
+                   return true;
+               case R.id.action_play_next:
+                   Toast.makeText(mContext, "Under Construction", Toast.LENGTH_SHORT).show();
+                   return true;
+               default:
+           }
+           return false;
+       }
+   }
+   @Override
+   public int getItemCount() {
+       return albumList.size();
+   }
+   }
+Weather Activity
+package programming.spikes.jon.help_a_hog;
+import android.annotation.SuppressLint;
+import android.graphics.Typeface;
+import android.location.Address;
+import android.location.Geocoder;
+import android.location.Location;
+import android.os.AsyncTask;
+import android.os.Looper;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.text.Html;
+import android.view.View;
+import android.widget.ProgressBar;
+import android.widget.TextView;
+import android.widget.Toast;
+import com.google.android.gms.location.LocationCallback;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationResult;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.location.LocationSettingsRequest;
+import com.google.android.gms.location.SettingsClient;
+import com.google.android.gms.maps.model.LatLng;
+import org.json.JSONException;
+import org.json.JSONObject;
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+import java.util.Locale;
+import static com.google.android.gms.location.LocationServices.getFusedLocationProviderClient;
+public class WeatherActivity extends AppCompatActivity {
+   TextView cityField, detailsField, currentTemperatureField, humidity_field, wind_field, weatherIcon, weatherTitle,
+   sunrise, sunset;
+   ProgressBar loader;
+   private LocationRequest mLocationRequest;
+   private long UPDATE_INTERVAL = 1000;
+   private long FASTEST_INTERVAL = 1000;
+   LatLng userLatLng;
+   Typeface weatherFont;
+   String userCity = "Default City";
+   String userState = "Default State";
+   boolean titleSet = false;
+   String OPEN_WEATHER_MAP_API = "c615a3f0b0187d384a08dbdd52d32caf";
+   @Override
+   protected void onCreate(Bundle savedInstanceState) {
+       super.onCreate(savedInstanceState);
+       setContentView(R.layout.activity_weather);
+       weatherTitle = findViewById(R.id.weatherTitle);
+       loader = findViewById(R.id.loader);
+       cityField = findViewById(R.id.city_field);
+       detailsField = findViewById(R.id.details_field);
+       currentTemperatureField = findViewById(R.id.current_temperature_field);
+       humidity_field = findViewById(R.id.humidity_field);
+       wind_field = findViewById(R.id.wind_field);
+       weatherIcon = findViewById(R.id.weather_icon);
+       weatherFont = Typeface.createFromAsset(getAssets(), "fonts/weathericons-regular-webfont.ttf");
+       weatherIcon.setTypeface(weatherFont);
+       sunrise = findViewById(R.id.sunrise);
+       sunset = findViewById(R.id.sunset);
+       //find users city for lookup
+       startLocationUpdates();
+   }
+   //tutorial from https://androstock.com/tutorials/create-a-weather-app-on-android-android-studio.html
+   public static String excuteGet(String targetURL)
+   {
+       URL url;
+       HttpURLConnection connection = null;
+       try {
+           //Create connection
+           url = new URL(targetURL);
+           connection = (HttpURLConnection)url.openConnection();
+           connection.setRequestProperty("content-type", "application/json;  charset=utf-8");
+           connection.setRequestProperty("Content-Language", "en-US");
+           connection.setUseCaches (false);
+           connection.setDoInput(true);
+           connection.setDoOutput(false);
+           InputStream is;
+           int status = connection.getResponseCode();
+           if (status != HttpURLConnection.HTTP_OK)
+               is = connection.getErrorStream();
+           else
+               is = connection.getInputStream();
+           BufferedReader rd = new BufferedReader(new InputStreamReader(is));
+           String line;
+           StringBuffer response = new StringBuffer();
+           while((line = rd.readLine()) != null) {
+               response.append(line);
+               response.append('\r');
+           }
+           rd.close();
+           return response.toString();
+       } catch (Exception e) {
+           return null;
+       } finally {
+           if(connection != null) {
+               connection.disconnect();
+           }
+       }
+   }
+   // Trigger new location updates at interval
+   //https://github.com/codepath/android_guides/wiki/Retrieving-Location-with-LocationServices-API
+   @SuppressLint("MissingPermission")
+   protected void startLocationUpdates() {
+       // Create the location request to start receiving updates
+       mLocationRequest = new LocationRequest();
+       mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+       mLocationRequest.setInterval(UPDATE_INTERVAL);
+       mLocationRequest.setFastestInterval(FASTEST_INTERVAL);
+       // Create LocationSettingsRequest object using location request
+       LocationSettingsRequest.Builder builder = new LocationSettingsRequest.Builder();
+       builder.addLocationRequest(mLocationRequest);
+       LocationSettingsRequest locationSettingsRequest = builder.build();
+       // Check whether location settings are satisfied
+       // https://developers.google.com/android/reference/com/google/android/gms/location/SettingsClient
+       SettingsClient settingsClient = LocationServices.getSettingsClient(this);
+       settingsClient.checkLocationSettings(locationSettingsRequest);
+       // new Google API SDK v11 uses getFusedLocationProviderClient(this)
+       getFusedLocationProviderClient(this).requestLocationUpdates(mLocationRequest, new LocationCallback() {
+                   @Override
+                   public void onLocationResult(LocationResult locationResult) {
+                       // do work here
+                       onLocationChanged(locationResult.getLastLocation());
+                   }
+               },
+               Looper.myLooper());
+   }
+   //https://github.com/pjwelcome/GoogleMapsDirections/blob/master/app/src/main/java/com/multimeleon/android/googlemapsdirections/MapsActivity.java
+   public void onLocationChanged(Location location) {
+       userLatLng = new LatLng(location.getLatitude(), location.getLongitude());
+       Geocoder geocoder;
+       List<Address> userAddress;
+       geocoder = new Geocoder(this, Locale.getDefault());
+       try {
+           userAddress = geocoder.getFromLocation(userLatLng.latitude, userLatLng.longitude, 1); // Here 1 represent max location result to returned, by documents it recommended 1 to 5
+           userCity = userAddress.get(0).getLocality();
+           userState = userAddress.get(0).getAdminArea();
+           String userCountry = userAddress.get(0).getCountryName();
+           String userPostalCode = userAddress.get(0).getPostalCode();
+           String knownName = userAddress.get(0).getFeatureName();
+           if(titleSet == false){
+               taskLoadUp(userCity + ", US");
+               titleSet = true;
+           }
+       } catch (Exception e) {
+           e.printStackTrace();
+       }
+   }
+   public void taskLoadUp(String query) {
+           DownloadWeather task = new DownloadWeather();
+           task.execute(query);
+   }
+   public static String setWeatherIcon(int actualId, long sunrise, long sunset){
+       int id = actualId / 100;
+       String icon = "";
+       if(actualId == 800){
+           long currentTime = new Date().getTime();
+           if(currentTime>=sunrise && currentTime<sunset) {
+               icon = "&#xf00d;";
+           } else {
+               icon = "&#xf02e;";
+           }
+       } else {
+           switch(id) {
+               case 2 : icon = "&#xf01e;";
+                   break;
+               case 3 : icon = "&#xf01c;";
+                   break;
+               case 7 : icon = "&#xf014;";
+                   break;
+               case 8 : icon = "&#xf013;";
+                   break;
+               case 6 : icon = "&#xf01b;";
+                   break;
+               case 5 : icon = "&#xf019;";
+                   break;
+           }
+       }
+       return icon;
+   }
+   class DownloadWeather extends AsyncTask< String, Void, String > {
+       @Override
+       protected void onPreExecute() {
+           super.onPreExecute();
+           loader.setVisibility(View.VISIBLE);
+       }
+       protected String doInBackground(String... args) {
+           String xml = excuteGet("http://api.openweathermap.org/data/2.5/weather?q=" + args[0] +
+                   "&units=imperial&appid=" + OPEN_WEATHER_MAP_API);
+           return xml;
+       }
+       @Override
+       protected void onPostExecute(String xml) {
+           try {
+               JSONObject json = new JSONObject(xml);
+               if (json != null) {
+                   JSONObject details = json.getJSONArray("weather").getJSONObject(0);
+                   JSONObject main = json.getJSONObject("main");
+                   JSONObject wind = json.getJSONObject("wind");
+                   DateFormat df = DateFormat.getDateTimeInstance();
+                   cityField.setText(json.getString("name") + ", " + userState);
+                   detailsField.setText(details.getString("description").toUpperCase(Locale.US));
+                   currentTemperatureField.setText(String.format("%.0f", main.getDouble("temp")) + "°");
+                   humidity_field.setText("Humidity: " + main.getString("humidity") + "%");
+                   wind_field.setText("Wind: " + String.format("%.0f", wind.getDouble("speed")) + " mph");
+                   String sunr = new SimpleDateFormat("hh:mm a").format(new Date(json.getJSONObject("sys").getInt("sunrise")*1000L));
+                   sunrise.setText("Sunrise: " +sunr);
+                   String suns = new SimpleDateFormat("hh:mm a").format(new Date(json.getJSONObject("sys").getInt("sunset")*1000L));
+                   sunset.setText("Sunset: " +suns);
+                   weatherIcon.setText(Html.fromHtml(setWeatherIcon(details.getInt("id"),
+                           json.getJSONObject("sys").getLong("sunrise") * 1000,
+                           json.getJSONObject("sys").getLong("sunset") * 1000)));
+                   loader.setVisibility(View.GONE);
+               }
+           } catch (JSONException e) {
+               Toast.makeText(getApplicationContext(), "Error, Check City", Toast.LENGTH_SHORT).show();
+           }
+       }
+   }
+   }
+Sports Main
+package programming.spikes.jon.help_a_hog;
+import android.content.res.Resources;
+import android.graphics.Rect;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.TypedValue;
+import android.view.View;
+import android.widget.ImageView;
+import com.bumptech.glide.Glide;
+import java.util.ArrayList;
+import java.util.List;
+public class activity_sport_main extends AppCompatActivity {
+   private RecyclerView recyclerView;
+   private SportsAdapter adapter;
+   private List<SportPic> sportsList;
+   @Override
+   protected void onCreate(Bundle savedInstanceState) {
+       super.onCreate(savedInstanceState);
+       setContentView(R.layout.activity_sport_main);
+       recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+       sportsList = new ArrayList<>();
+       adapter = new SportsAdapter(this, sportsList);
+       RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(this, 2);
+       recyclerView.setLayoutManager(mLayoutManager);
+       recyclerView.addItemDecoration(new GridSpacingItemDecoration(2, dpToPx(10), true));
+       recyclerView.setItemAnimator(new DefaultItemAnimator());
+       recyclerView.setAdapter(adapter);
+       prepareAlbums();
+       try {
+           Glide.with(this).load(R.drawable.razorbackback).into((ImageView) findViewById(R.id.backdrop));
+       } catch (Exception e) {
+           e.printStackTrace();
+       }
+   }
+   /**
+    * Adding few albums for testing
+    */
+   private void prepareAlbums() {
+       int[] covers = new int[]{
+               R.drawable.razorbackfootball,
+               R.drawable.razorbackbasketball,
+               R.drawable.razorbackbaseball,
+               R.drawable.razorbacktrack,
+               R.drawable.razorbackcrosscountry,
+               R.drawable.razorbackgym,
+               R.drawable.razorbacklacrosse,
+               R.drawable.razorbacksoccer,
+               R.drawable.razorbackrugby,
+               R.drawable.razorbackgolf,
+               R.drawable.razorbackvolley,
+               R.drawable.razorbacktennis
+       };
+       SportPic a = new SportPic("Football", "7th in NCAA 0-8", covers[0]);
+       sportsList.add(a);
+       a = new SportPic("Basketball", "34th in NCAA 23-12", covers[1]);
+       sportsList.add(a);
+       a = new SportPic("Baseball", "8th in NCAA 37-17", covers[2]);
+       sportsList.add(a);
+       a = new SportPic("Track and Field", "4th in NCAA", covers[3]);
+       sportsList.add(a);
+       a = new SportPic("Cross Country", "19th in NCAA", covers[4]);
+       sportsList.add(a);
+       a = new SportPic("Gymnastics", "10th in NCAA", covers[5]);
+       sportsList.add(a);
+       a = new SportPic("Lacrosse", "Not Ranked", covers[6]);
+       sportsList.add(a);
+       a = new SportPic("Soccer", "3rd in SEC 14-5-4", covers[7]);
+       sportsList.add(a);
+       a = new SportPic("Rugby", "Not Ranked", covers[8]);
+       sportsList.add(a);
+       a = new SportPic("Golf", "14th in NCAA", covers[9]);
+       sportsList.add(a);
+       a = new SportPic("Volleyball", "14th in NCAA", covers[10]);
+       sportsList.add(a);
+       a = new SportPic("Tennis", "9th in NCAA 4-8", covers[11]);
+       sportsList.add(a);
+       adapter.notifyDataSetChanged();
+   }
+   /**
+    * RecyclerView item decoration - give equal margin around grid item
+    */
+   public class GridSpacingItemDecoration extends RecyclerView.ItemDecoration {
+       private int spanCount;
+       private int spacing;
+       private boolean includeEdge;
+       public GridSpacingItemDecoration(int spanCount, int spacing, boolean includeEdge) {
+           this.spanCount = spanCount;
+           this.spacing = spacing;
+           this.includeEdge = includeEdge;
+       }
+       @Override
+       public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
+           int position = parent.getChildAdapterPosition(view); // item position
+           int column = position % spanCount; // item column
+           if (includeEdge) {
+               outRect.left = spacing - column * spacing / spanCount; // spacing - column * ((1f / spanCount) * spacing)
+               outRect.right = (column + 1) * spacing / spanCount; // (column + 1) * ((1f / spanCount) * spacing)
+               if (position < spanCount) { // top edge
+                   outRect.top = spacing;
+               }
+               outRect.bottom = spacing; // item bottom
+           } else {
+               outRect.left = column * spacing / spanCount; // column * ((1f / spanCount) * spacing)
+               outRect.right = spacing - (column + 1) * spacing / spanCount; // spacing - (column + 1) * ((1f /    spanCount) * spacing)
+               if (position >= spanCount) {
+                   outRect.top = spacing; // item top
+               }
+           }
+       }
+   }
+   /**
+    * Converting dp to pixel
+    */
+   private int dpToPx(int dp) {
+       Resources r = getResources();
+       return Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, r.getDisplayMetrics()));
+   }
+   }
